@@ -1,0 +1,198 @@
+{{define "register/index.html"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册用户</title>
+    <script src="/static/js/jquery-3.6.0.min.js"></script>
+    <link rel="icon" href="data:image/ico;base64,aWNv">
+</head>
+
+<!-- 处理格式样式css -->
+<style>
+    #loginDiv {
+        background-color: rgb(255, 255, 255);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center; /* 让div内部文字居中 */
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    p {margin-top: 30px; color: rgb(0, 0, 0);}
+   
+    input {
+        margin-left: 15px;
+        border-radius: 5px;
+        border-style: hidden;
+        height: 30px;
+        width: 140px;   
+        background-color: rgba(181, 159, 181, 0.5);
+        outline: none;
+        color: #000000;
+        /* padding-left: 10px; */
+        /* left:-5px;
+        top:-8px; */
+    }
+
+    .button {
+        border-color: rgb(220, 205, 147);
+        background-color: rgba(255, 255, 255, 0.8);
+        color: rgb(0, 0, 0);
+        border-style: hidden;
+        border-radius: 10px;
+        width: 80px;
+        height:30px;
+        font-size: 15px;
+       border: 1px solid #E2E2E2;
+
+    }
+
+    #logo{position:absolute; left:-5px; top:-8px;}
+
+    #btn2{position:absolute; left:28%; top:84%;}
+
+    #hair_yzm{position:absolute; left:75%; top:75%;}
+
+    #close_btn{
+        position:absolute;
+        left:88%;
+        top:4%;
+    }
+
+</style>
+
+<!-- 页面样式内容 -->
+<body>
+    <body>
+    <div id="loginDiv">
+        <div id="logo">
+            <img src="/static/images/logo2.png" width="-200px" height="-200px">
+        </div>
+        <form>
+            <h1 style="text-align: center;color: rgb(0, 0, 0);  margin-left: 70px; margin-left: 70px; margin-left: 10px;">用户注册</h1>
+            <p>用户名称：<input id="uname" type="text"  autofocus required placeholder="可不填随机生成"><label></label></p>
+            <p>注册账号：<input id="username" type="text"  autofocus required></p>
+            <p>注册密码：<input id="password" type="password"  required><label></label></p>
+            <p>验证码&nbsp&nbsp&nbsp&nbsp：<input id= "yzm" type="text"><label></label></p>     
+            <form>
+                <p >电子邮箱：<input id="email" type="email" required ><label></label></p>
+                <div id="hair_yzm">
+                    <input id="btn_sendmail" style="width: 80px;height: 26px;text-align: center;background-color: white;border: 1px solid #E2E2E2;" type="button" value="获取验证码" >
+                </div>
+            </form>
+            <div id="btn2">
+                <input type="button" class="button" id="btn_register" value="确认注册">
+                <input onclick="btn1()" type="reset" class="button" value="返回">
+            </div>
+        </form>
+        <button id="close_btn">X</button>
+    </div> 
+
+<script>
+    function btn1() {
+        location.href = "/user/to/login"
+    }
+
+      //关闭按钮
+    var close_btn = document.getElementById("close_btn")
+    close_btn.onclick = function() {
+        if(close_btn.onclick){
+            setTimeout(function(){
+                parent.location.reload(true);
+                var index = parent.layer.getFrameIndex(window.name);
+                parent.layer.close(index);
+                },1);
+        }
+    }
+
+
+    //处理注册按钮
+    var btn_register = document.getElementById("btn_register")
+    btn_register.onclick = function() {
+        var uname = document.getElementById("uname").value;
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        var email = document.getElementById("email").value;
+        var yzm = document.getElementById("yzm").value;
+        $.ajax({
+            url:"/user/do/register",
+            type:"POST",
+            data:{
+                "uname":uname,
+                "username":username,
+                "password":password,
+                "email":email,
+                "yzm":yzm,
+            },
+            success:function(data){
+                if (data) {
+                    location.href = "/to/login"
+                }else{
+                    alert("登录失败")
+                }
+                // alert(data["code"]);
+                // alert(data["msg"])
+            },
+            erroe: function() {
+                alert("0")
+            }
+        })
+    }
+
+    //获取验证码
+    var btn_sendmail = document.getElementById("btn_sendmail")
+    btn_sendmail.onclick = function() {
+        var email = document.getElementById("email").value;
+        $.ajax({
+            url:"/user/email",
+            type:"POST",
+            data:{
+                "email":email,
+            },
+            success:function(data){
+            },
+            fail:function(data){
+            }
+        })
+    }
+    
+    //验证码获取倒计时
+    var yzm_time = document.getElementById("btn_sendmail")
+    $(yzm_time).click(function(){
+    timeOut(yzm_time,60);
+    });
+    
+    function timeOut(id,times){
+        var sendBtn = $(id);
+        var html = times+'秒';
+        sendBtn.addClass('btn-dis');
+        sendBtn.val(html);
+        sendBtn.attr('disabled',true);
+    
+        var timer = setInterval(function(){
+            times--;
+            sendBtn.val(times+'秒');
+            if(times===0){
+                clearInterval(timer);
+                sendBtn.val('发送验证码');
+                sendBtn.removeClass('btn-dis');
+                sendBtn.attr('disabled',false);
+                return true;
+            }else{
+                return false;
+            }
+        },1000);
+    }     
+    
+    
+</script>
+</body>
+</body>
+</html>
+{{end}}

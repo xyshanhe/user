@@ -1,0 +1,51 @@
+<!DOCTYPE html >
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>ss</title>
+		<script src="../../static/js/jquery-3.6.0.min.js"></script>
+	</head>
+<style>
+	    .btn-dis, .btn-dis:hover {
+        background-color: #999;
+        color: #fff;
+        cursor: not-allowed;
+    }
+</style>
+
+<body>
+	<input type="button" class="code-btn" id="s" value="发送验证码">
+</body>	
+
+<script>
+	var s1 = document.getElementById("s")
+    $(s1).click(function(){
+    timeOut(s1,60);
+});
+
+function timeOut(id,times){
+    var sendBtn = $(id);
+    var html = times+'秒后重新发送';
+    sendBtn.addClass('btn-dis');
+    sendBtn.val(html);
+    sendBtn.attr('disabled',true);
+ 
+    var timer = setInterval(function(){
+        times--;
+        sendBtn.val(times+'秒后重新发送');
+        if(times===0){
+            clearInterval(timer);
+            sendBtn.val('发送验证码');
+            sendBtn.removeClass('btn-dis');
+            sendBtn.attr('disabled',false);
+            return true;
+        }else{
+            return false;
+        }
+    },1000);
+}  
+	</script>
+
+</html>

@@ -1,0 +1,124 @@
+{{define "updatapwd/index.html"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户中心</title>
+</head>
+
+<!-- 处理格式样式css -->
+<style>
+    #logo{
+        color: rgb(206, 68, 87);
+    }
+    #loginDiv {
+        /* width:25%; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* height: 300px; */
+        background-color: rgb(255, 255, 255);
+        box-shadow: 7px 7px 17px rgba(64, 69, 82, 0.5);
+        border-radius: 30px;
+        text-align: center; /* 让div内部文字居中 */
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    p {
+        margin-top: 30px;
+        margin-left: 5px;
+        color: rgb(0, 0, 0);
+    }
+    input {
+        margin-left: 15px;
+        border-radius: 5px;
+        border-style: hidden;
+        height: 30px;
+        width: 140px;
+        background-color: rgba(216, 191, 216, 0.5);
+        outline: none;
+        color: #000000;
+        padding-left: 10px;
+    }
+    .button {
+        border-color: rgb(220, 205, 147);
+        background-color: rgba(255, 255, 255, 0.8);
+        color: rgb(0, 0, 0);
+        border-style: hidden;
+        border-radius: 10px;
+        width: 80px;
+        height:30px;
+        font-size: 15px;
+        border: 1px solid #E2E2E2;
+    }
+    #logo{
+        position:absolute;
+        left:-5px;
+        top:-8px;
+    }
+    
+    #close_btn{
+        position:absolute;
+        left:88%;
+        top:4%;
+    }
+
+</style>
+
+<!-- 处理逻辑 -->
+<script>
+    function btn1() {
+        location.href = "/user/to/login"
+    }
+</script>
+
+
+<!-- 页面样式内容 -->
+<body>
+    <div class="row">
+        <!-- <h1 class="col" id="logo">CHERRY</h1> -->
+        <!-- <img src="/static/images/page.jpeg"> -->
+    </div>
+    <body>
+    <div id="loginDiv">
+        <div id="logo">
+            <img src="/static/images/logo2.png" width="-200px" height="-200px">
+        </div>
+        <form action="/user/do/update" method="POST">
+           
+            <h1 style="text-align: center;color: rgb(0, 0, 0);  margin-left: 70px; margin-left: 10px;">用户中心</h1>
+            <p>电子邮箱：<input id="email" type="email" name="email" required><label id="emil_trip"></label></p>
+            <p>修改密码：<input id="password" type="password" name="password" required><label id="password_trip"></label></p>
+            
+            <div style="text-align: center;margin-top: 30px;">
+                <input type="submit" class="button" value="确认">
+                <input onclick="btn1()" type="reset" class="button" value="返回">
+            </div>
+        </form>
+        <button id="close_btn">X</button>
+    </div>
+</body>
+
+<script>
+    //关闭按钮
+    var close_btn = document.getElementById("close_btn")
+    close_btn.onclick = function() {
+        if(close_btn.onclick){
+            setTimeout(function(){
+                parent.location.reload(true);
+                var index = parent.layer.getFrameIndex(window.name);
+                parent.layer.close(index);
+            },1);
+        }
+    }
+
+</script>
+
+</html>
+{{end}}
