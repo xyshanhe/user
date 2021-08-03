@@ -109,7 +109,7 @@
         margin:-16% 0 0 -25%; 
    }
 
-   #share{position: absolute;top: 13%;left: 22%;width: 80px;height: 26px;text-align: center;background-color: rgb(228, 228, 228);}
+   #share{position: absolute;top: 13%;left: 22%;width: 80px;height: 26px;}
    #description{margin:1.5% 0 0 1.5%; font-weight: 400px; color: #b5acac;width: 95%;height: 18%;}
    #theme{color: #ffffff; cursor: posinter; font-weight: 700;margin:2.5% 0 0 1%;font-size: 19px;}
    #user{ position:absolute;margin:3.9% 0 0 1%;color: rgb(177, 153, 74)}
@@ -118,10 +118,6 @@
 </style>
 
 <body style="background-color: #171514; min-width: 200px;">
-    <!-- <div id="logo">
-        <img src="/static/images/pagelogo.png" width="-200px" height="-200px">
-    </div> -->
-
     <div>
         <ul>   
             <li><a id="nav" href="page"><div class="glyphicon glyphicon-home"></div> 首页</a></li>
@@ -133,13 +129,16 @@
         </ul>
     </div>  
     
+    <!-- 登录 -->
     <iframe id="login_iframe" frameborder="0" name="mainFrame1" scrolling="no"></iframe>
 
     <div id="i"></div>
+
+    <!-- 发帖子 -->
     <iframe id="post_iframe" frameborder="0" name="mainFrame2" scrolling="no"></iframe>
     
     <form>
-        <div title="http://127.0.0.1:8080/community/to/share"  onclick="func1(this)" id="share" >分享</div> 
+        <div title="http://127.0.0.1:8080/community/to/share"  onclick="func1(this)" id="share" class="btn btn-default" href="#" role="button">分享</div> 
     </form>
     
 </body> 
@@ -156,15 +155,12 @@
         window.open(obj.title,myFrame)
     }
 
+    //获取帖子数据
     window.onload = function (){
-        // reloadPage();
         $.get("http://127.0.0.1:8080/do/community", function (data, status) {
-        //  console.log ("数据: " + data + "\n状态: " + status);
           var html = ""
-        //   var count = "" 
 
           for(i=0;i<data["data"][i]["id"];i++){
-            // count = `<p>全部（`+data["data"][i]["Id"]+`）</p>`
             html += `<div id="article_style"><div id="theme">
                     <a href=""><p style="color: rgb(252, 12, 12);">`
                     +data["data"][i]["title"]+
@@ -184,7 +180,6 @@
                     </div>`
             }
           $("#i").html(html);
-        //   $("#i").html(html);
         }); 
     }
 

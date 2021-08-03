@@ -279,9 +279,11 @@ func Do_share(c *gin.Context) {
 		"code": 200,
 		"msg":  "分享成功"}
 
-	share.Set_stick(code.Title, code.Data)
-
-	c.JSON(http.StatusOK, map_data)
+	if share.Set_stick(code.Title, code.Data) == true {
+		c.JSON(http.StatusOK, map_data)
+	} else {
+		c.JSON(http.StatusUnprocessableEntity, gin.H{"code": 421, "msg": "分享失败"})
+	}
 }
 
 //用户信息路由
