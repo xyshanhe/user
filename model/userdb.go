@@ -20,25 +20,21 @@ var (
 	Info []usermodel.User
 	sql  = "root:password@tcp(localhost:3306)/project?charset=utf8&parseTime=True&loc=Local"
 	DB   *gorm.DB
-	err  error
 )
 
 //链接数据库
-func Getslq() *gorm.DB {
-	db, err := gorm.Open("mysql", sql)
+func Getslq() (err error) {
+	DB, err = gorm.Open("mysql", sql)
 	if err != nil {
-		panic(err)
+		return
 	}
-	DB = db
-	return db
+	return DB.DB().Ping()
 }
 
 // Set 增
 func Set(n string, p string, m string, an string) bool {
 
-	Getslq()
-	defer DB.Close()
-
+	//创建表自动迁移
 	DB.AutoMigrate(&usermodel.User{})
 
 	hash, err := util.HashEncode(p)
@@ -52,16 +48,11 @@ func Set(n string, p string, m string, an string) bool {
 
 //Get 查
 func Get(n string, p string) bool {
-
 	var u []usermodel.User
 
-	Getslq()
-	defer DB.Close()
-
-	DB.Where("user_name = ? ", n).Find(&u)
+	DB.Where("user_name = ?", n).First(&u)
 
 	for _, j := range u {
-		Info = append(Info, j)
 		if util.ComparePwd(j.User_password, p) == true {
 			return true
 		}
@@ -74,23 +65,17 @@ func Update(p string, m string) bool {
 
 	var u []usermodel.User
 
-	Getslq()
-
 	hash, err := util.HashEncode(p)
 	util.Check(err)
 
 	DB.Model(&u).Where("user_mail = ?", m).Update("user_password", hash)
 
-	defer DB.Close()
 	return true
 }
 
 // UpdateAccountName 更改用户名称
 func UpdateAccountName(user, name string) bool {
 	var u []usermodel.User
-
-	Getslq()
-	defer DB.Close()
 
 	DB.Model(&u).Where("user_name = ?", user).Update("user_account_name", name)
 
@@ -101,9 +86,6 @@ func UpdateAccountName(user, name string) bool {
 func MaliLogin(m string) bool {
 
 	var u []usermodel.User
-
-	Getslq()
-	defer DB.Close()
 
 	DB.Where("user_mail = ? ", m).Find(&u)
 

@@ -2,11 +2,19 @@ package main
 
 import (
 	"User/middleware"
+	"User/model"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+
+	err := model.Getslq()
+	if err != nil {
+		panic(err)
+	}
+
+	defer model.DB.Close()
 
 	//创建路由
 	r := gin.Default()

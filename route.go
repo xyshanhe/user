@@ -251,8 +251,8 @@ func com_content() []map[string]interface{} {
 		arr1 = make(map[string]interface{})
 		arr1["title"] = i.Title
 		arr1["data"] = i.Data
-		arr1["id"] = fmt.Sprint(i.Id)
-		arr1["createtime"] = (i.Create_time)
+		arr1["id"] = fmt.Sprint(i.ID)
+		arr1["createtime"] = (i.CreatedAt)
 		slice = append(slice, arr1)
 	}
 	return slice

@@ -5,11 +5,9 @@ import (
 )
 
 type Stick_data struct {
-	Id          int
-	Title       string
-	Data        string
-	Create_time string
-	Update_time string
+	gorm.Model
+	Title string
+	Data  string
 }
 
 var (
@@ -44,7 +42,7 @@ func Get_stick() {
 	}
 	defer db.Close()
 
-	db.Where("id >= ? ", 0).Find(&s)
+	db.Find(&s)
 
 	for _, j := range s {
 		Info = append(Info, j)

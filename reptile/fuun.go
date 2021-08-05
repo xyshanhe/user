@@ -78,7 +78,7 @@ func Data_get() {
 	}
 	defer db.Close()
 
-	db.Where("id >= ? ", 0).Find(&d)
+	db.Find(&d)
 
 	for _, j := range d {
 
