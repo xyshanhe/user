@@ -1,0 +1,52 @@
+生成密钥（只需要配置一次换电脑就重新配置）：
+	$ ssh-keygen -t rsa -C "2653563535@qq.com"
+
+配置名称及邮箱（只需要配置一次换电脑就重新配置）：
+	$ git config --global user.name "xinyu"
+	$ git config --global user.email "2653563535@qq.com"
+
+
+配置本地仓库与远程仓库链接（一个项目一个地址，只需要配置一次）：
+	$ git remote add origin git@github.com:xyshanhe/user.git
+
+初始化仓库（在缓存区）：
+	$ git init
+
+提交缓存区的内容到暂存区：
+	$ git add .
+
+将暂存区的代码上传到远程仓库git库：
+	$ git push origin master
+
+查看改动：
+	$ git status
+
+添加提交信息及内容：
+	$ git commit -m "填写内容"
+
+查看历史提交：
+	$ git log
+
+
+
+
+
+
+git init                                                                      在本地初始化一个本地仓库
+
+git remote add origin https://github.com/xxx/xx.git  连接本地仓库到远程仓库
+
+git remote rm origin                                                 移除本地仓库origin的远程连接参考
+
+git diff                                                                       比较本地与暂存区差异
+
+git log                                                                       查看历史提交记录
+
+git branch xx                                                            创建xx分支
+
+git checkout xx                                                         切换到xx分支
+
+git checkout -b xx                                                     创建并切换到xx分支
+
+git merge xx                                                             将xx分支合并到当前分支
+ 
