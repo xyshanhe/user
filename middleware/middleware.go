@@ -3,7 +3,6 @@ package middleware
 import (
 	"User/model/usermodel"
 	"User/util"
-	"fmt"
 	"net/http"
 	"strings"
 
@@ -19,7 +18,6 @@ func AuthMiddleware() gin.HandlerFunc {
 
 		//validate token formate
 		if tokenString == "" || !strings.HasPrefix(tokenString, "Bearer ") {
-			fmt.Println("Bearer 进来了权限不足")
 			ctx.JSON(http.StatusUnauthorized, gin.H{"code": 401, "msg": "权限不足"})
 			ctx.Abort()
 			return
@@ -29,7 +27,6 @@ func AuthMiddleware() gin.HandlerFunc {
 		token, claims, err := util.ParesToken(tokenString)
 
 		if err != nil || !token.Valid {
-			fmt.Println("进来了权限不足")
 			ctx.JSON(http.StatusUnauthorized, gin.H{"code": 401, "msg": "权限不足"})
 			ctx.Abort()
 			return
@@ -45,11 +42,9 @@ func AuthMiddleware() gin.HandlerFunc {
 		userId := claims.Userid
 		var user usermodel.User
 		db.First(&user, userId)
-		fmt.Println(db.First(&user, userId))
 
 		//用户
 		if user.Id == 0 {
-			fmt.Println("Id是0了 进来了权限不足")
 			ctx.JSON(http.StatusUnauthorized, gin.H{"code": 401, "msg": "权限不足"})
 			ctx.Abort()
 			return

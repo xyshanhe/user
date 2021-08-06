@@ -1,6 +1,7 @@
 package main
 
 import (
+	"User/dto"
 	"User/model"
 	"User/model/share"
 	"User/model/usermodel"
@@ -8,7 +9,6 @@ import (
 	"User/sendmail"
 	"User/util"
 	"fmt"
-	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -69,39 +69,37 @@ func To_Login(c *gin.Context) {
 
 func Do_Login(c *gin.Context) {
 	var user_info util.UserInfo
+	var user usermodel.User
 
 	err := c.ShouldBind(&user_info)
 	util.Check(err)
-	// fmt.Println(user_info.UserName, user_info.PassWord)
 
 	if len(user_info.UserName) == 0 {
-		c.JSON(http.StatusUnprocessableEntity, gin.H{"code": 422, "msg": "账号不能为空"})
+		c.JSON(http.StatusUnprocessableEntity, gin.H{"code": 422, "msg": "账号不能为空！！"})
 		return
 	}
-
 	if len(user_info.PassWord) < 6 {
-		c.JSON(http.StatusUnprocessableEntity, gin.H{"code": 422, "msg": "密码需要6位数"})
+		c.JSON(http.StatusUnprocessableEntity, gin.H{"code": 422, "msg": "密码需要6位数！！"})
 		return
 	}
 
-	token, err := util.ReleastToken(usermodel.User{})
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"code": 500, "msg": "系统异常"})
-		log.Printf("token generate error:%v", err)
+	//查询用户是否存在
+	model.DB.Where("user_name = ?", user_info.UserName).First(&user)
+
+	if user.Id == 0 {
+		c.JSON(http.StatusUnprocessableEntity, gin.H{"code": 422, "msg": "无此用户！！！"})
 		return
 	}
-
-	map_data := map[string]interface{}{
-		"code": 200,
-		"data": gin.H{"token": token},
-		"msg":  "登录成功"}
-
-	if model.Get(user_info.UserName, user_info.PassWord) == true {
-		c.JSON(http.StatusOK, map_data)
-	} else {
-		c.String(http.StatusOK, "账号或密码错误")
-		c.JSON(http.StatusUnprocessableEntity, gin.H{"code": 421, "msg": "账号或密码错误"})
+	if model.Get(user_info.UserName, user_info.PassWord) == false {
+		c.JSON(http.StatusBadRequest, gin.H{"code": 400, "msg": "密码错误！！！"})
+		return
 	}
+	//发放token
+	token, err := util.ReleastToken(user)
+	map_data := map[string]interface{}{"code": 200, "data": gin.H{"token": token}, "msg": "登录成功"}
+
+	//返回结果
+	c.JSON(http.StatusOK, map_data)
 }
 
 //邮箱登录
@@ -289,5 +287,5 @@ func Do_share(c *gin.Context) {
 //用户信息路由
 func Info(c *gin.Context) {
 	user, _ := c.Get("user")
-	c.JSON(http.StatusOK, gin.H{"code": 200, "data": gin.H{"user": user}})
+	c.JSON(http.StatusOK, gin.H{"code": 200, "data": gin.H{"user": dto.ToUserDto(user.(usermodel.User))}})
 }
