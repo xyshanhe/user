@@ -1,6 +1,7 @@
 package share
 
 import (
+	_ "github.com/go-sql-driver/mysql" //导入mysql
 	"github.com/jinzhu/gorm"
 )
 
