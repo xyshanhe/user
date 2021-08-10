@@ -28,8 +28,8 @@ func DayMail(mail string) {
 	rand.Seed(time.Now().Unix())
 	num := rand.New(rand.NewSource(time.Now().UnixNano())).Int31n(1000000)
 	data := fmt.Sprint("【HiaHia】验证码是：", num)
-	Code = fmt.Sprint(num)
 	// 接收到的随机6位验证码给全局变量Code
+	Code = fmt.Sprint(num)
 
 	//发送邮件
 	m := gomail.NewMessage()
@@ -39,12 +39,7 @@ func DayMail(mail string) {
 	m.SetBody("text/html", data)             //邮件内容
 	d := gomail.NewDialer("smtp.qq.com", 587, "2653563535@qq.com", "ntfqabvgdyjcdjeh")
 
-	// Send the email to Bob, Cora and Dan.WWWWWW
 	if err := d.DialAndSend(m); err != nil {
-		//Data = false
 		panic(err)
 	}
-	// if Data == false {
-	// 	Data = true
-	// }
 }

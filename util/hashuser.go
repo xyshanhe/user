@@ -14,8 +14,10 @@ func HashEncode(pwd string) (string, error) {
 // ComparePwd ...
 func ComparePwd(hashedPwd string, sourcePwd string) bool {
 	err := bcrypt.CompareHashAndPassword([]byte(hashedPwd), []byte(sourcePwd))
+
 	if err != nil {
 		return false
 	}
 	return true
+	// return err == nil
 }

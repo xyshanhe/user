@@ -1,6 +1,7 @@
 package reptile
 
 import (
+	"User/model"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -8,14 +9,12 @@ import (
 	"regexp"
 
 	_ "github.com/go-sql-driver/mysql" //导入mysql
-	"github.com/jinzhu/gorm"
 )
 
 var (
 	// data = `<div class="link_item">[\s\S]+?<img[\s\S]+?src="([\s\S]+?)"[\s\S]+?<a[\s\S]+?href="([\s\S]+?)"[\s\S]+?>([\s\S]+?)<[\s\S]+?class="description a_animation">([\s\S]+?)<`
 	data = `<div class="link_item">[\s\S]+?<img[\s\S]+?src="([\s\S]+?)"[\s\S]+?<a[\s\S]+?href="([\s\S]+?)"[\s\S]+?>([\s\S]+?)<[\s\S]+?class="description a_animation">([\s\S]+?)<[\s\S]+?class="category"[\s\S]+?>([\s\S]+?)<`
 	Info []Data
-	sql  = "root:password@tcp(localhost:3306)/project?charset=utf8&parseTime=True&loc=Local"
 )
 
 type Data struct {
@@ -53,36 +52,18 @@ func Fuun_data() {
 
 func Data_set(name, explain, href, images, category string) {
 
-	//用户名:密码@tcp(ip:port)/数据库名称?charset=utf8&paresTime=True&loc=Local
-	db, err := gorm.Open("mysql", sql)
-	if err != nil {
-		panic(err)
-	}
-	defer db.Close()
-
-	db.AutoMigrate(&Data{})
+	model.DB.AutoMigrate(&Data{})
 
 	// //增加
 
-	db.Create(&Data{Appname: name, Explain: explain, Addr: href, Imgs: images, Category: category})
+	model.DB.Create(&Data{Appname: name, Explain: explain, Addr: href, Imgs: images, Category: category})
 }
 
 func Data_get() {
 
 	var d []Data
 
-	//用户名:密码@tcp(ip:port)/数据库名称?charset=utf8&paresTime=True&loc=Local
-	db, err := gorm.Open("mysql", sql)
-	if err != nil {
-		panic(err)
-	}
-	defer db.Close()
+	model.DB.Find(&d)
 
-	db.Find(&d)
-
-	for _, j := range d {
-
-		Info = append(Info, j)
-
-	}
+	Info = append(Info, d...)
 }

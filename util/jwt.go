@@ -7,7 +7,7 @@ import (
 	"github.com/dgrijalva/jwt-go"
 )
 
-var jwtkey = []byte("a_secret_crect")
+var jwtkey = []byte("share_token")
 
 type Claims struct {
 	Userid uint
@@ -24,7 +24,7 @@ func ReleastToken(user usermodel.User) (string, error) {
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: expirationTime.Unix(), //过期时间
 			IssuedAt:  time.Now().Unix(),     //发放时间
-			Issuer:    "oceanlearn.tech",     //签发人
+			Issuer:    "share",               //签发人
 			Subject:   "user token",
 		},
 	}

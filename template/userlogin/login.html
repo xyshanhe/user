@@ -162,9 +162,11 @@
                 "password":password,
             },
             success:function(data){
+                // alert(data["data"]["token"])
                 if(data["code"]==200){      
                     //登录成功关闭窗口
                     myalert('登录成功');
+                    //窗口关闭时间
                     setTimeout(function(){
                         parent.location.reload(true);
                         var index = parent.layer.getFrameIndex(window.name);

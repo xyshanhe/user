@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"User/model"
 	"User/model/usermodel"
 	"User/util"
 	"net/http"
@@ -8,7 +9,6 @@ import (
 
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql" //导入mysql
-	"github.com/jinzhu/gorm"
 )
 
 func AuthMiddleware() gin.HandlerFunc {
@@ -32,16 +32,10 @@ func AuthMiddleware() gin.HandlerFunc {
 			return
 		}
 
-		db, err := gorm.Open("mysql", "root:password@tcp(localhost:3306)/project?charset=utf8&parseTime=True&loc=Local")
-		if err != nil {
-			panic(err)
-		}
-		defer db.Close()
-
 		//验证通过后获取claim中的userid
 		userId := claims.Userid
 		var user usermodel.User
-		db.First(&user, userId)
+		model.DB.First(&user, userId)
 
 		//用户
 		if user.Id == 0 {
