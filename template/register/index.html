@@ -132,7 +132,7 @@
             },
             success:function(data){
                 if (data) {
-                    location.href = "/to/login"
+                    location.href = "/to/page"
                 }else{
                     alert("登录失败")
                 }
@@ -150,7 +150,7 @@
     btn_sendmail.onclick = function() {
         var email = document.getElementById("email").value;
         $.ajax({
-            url:"/user/email",
+            url:"/user/emailyzm",
             type:"POST",
             data:{
                 "email":email,

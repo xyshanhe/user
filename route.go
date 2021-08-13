@@ -43,14 +43,14 @@ func Do_Register(c *gin.Context) {
 		user_info.Uname = util.RandomString(10)
 	}
 
-	map_data := map[string]interface{}{
-		"code": 200,
-		"msg":  "注册成功"}
-
 	if user_info.YZM != sendmail.Code || user_info.YZM == "" {
 		c.JSON(http.StatusUnprocessableEntity, gin.H{"code": 421, "msg": "验证码错误"})
 		return
 	}
+
+	map_data := map[string]interface{}{
+		"code": 200,
+		"msg":  "注册成功"}
 
 	if model.Set(user_info.UserName, user_info.PassWord, user_info.Email, user_info.Uname) == false {
 		c.JSON(http.StatusUnprocessableEntity, gin.H{"code": 421, "msg": "用户名已经存在！！！"})
@@ -123,6 +123,22 @@ func Email_login(c *gin.Context) {
 	} else {
 		c.JSON(http.StatusUnprocessableEntity, gin.H{"code": 421, "msg": "邮箱错误！！"})
 	}
+
+}
+
+//发送验证码
+func Email_Yzm(c *gin.Context) {
+
+	var user_info util.UserInfo
+	err := c.ShouldBind(&user_info)
+	util.Check(err)
+
+	if len(user_info.Email) == 0 {
+		c.JSON(http.StatusUnprocessableEntity, gin.H{"code": 422, "msg": "请输入有效邮箱！！"})
+		return
+	}
+
+	sendmail.DayMail(user_info.Email)
 
 }
 

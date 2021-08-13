@@ -12,14 +12,15 @@
 </head>
 <style>
     a:link {color:#000000;}       /* 未访问链接*/
-    a:visited {color:#000000;}  /* 已访问链接 */
-    a:hover {color:#b3b1b1;}   /* 鼠标移动到链接上 */
+    a:visited {color:#161616;}  /* 已访问链接 */
+    a:hover {color:#535353;}   /* 鼠标移动到链接上 */
     a:active{color:#ffffff;}   /* 鼠标点击时 */
     a:hover{text-decoration:none;}
 
     /* d导航栏 */
     #itme_nav{
         float: left;
+        font-size: 0.4rem;
         margin:0px 50px 0px 0px; 
     }
 
@@ -30,60 +31,65 @@
     #name{
         margin:0px 0px 0px 18px; 
         font-weight: 700;
-        font-size: 18px;
+        font-size: 0.38rem;
         cursor: pointer;/*鼠标变成手指样式*/
     }
 
     /* 分类标签 */
     #category{
-        width: 20%;
-        height: 9%;
         background-color: rgb(255, 197, 36);
-        border-radius:10px;
+        border-radius:5px;
         text-align:center ;   
         float: left;
+        font-size: 0.31rem;
         margin:13px 13px 13px 13px; 
    }
 
    /* app整体 */
    #item{
-        font-size: 15px;
         border-radius: 10px;
         list-style-type: none;
-        
    }
 
    /* app动效 */
-   #item:hover { box-shadow: 0px 1rem 2rem 0px rgba(255, 255, 255, 0.15); transform: translate(0,-8px); transition-delay: 0s !important;}
+   #item:hover {
+        background-color: rgb(231, 231, 231); 
+        box-shadow: 0px 1rem 2rem 0px rgba(255, 255, 255, 0.15);
+        transform: translate(0,-8px); 
+        transition-delay: 0s !important;
+    }
 
 
    /* app介绍 */
    #explain{
         margin:5px 0px 0px 18px;
         font-weight: 400px;
-        width: 65% ;
-        height: 50px;
-    }
+        width: 64% ;
+        height: 45px;
+        font-size: 0.31rem;
+        overflow: hidden;  
+        display: -webkit-box;  
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical; 
+        }
 
     /* app标题 */
     #count{
         position:absolute; 
         top:25%;
         left:0.8%;
-        width: 100%;
     }
 
     .item_111{
         color:#000000; 
-        font-size: 19px; 
+        font-size:0.39rem; 
         font-weight: 600; 
         float: left;
         margin:0px 20px 0px 0px; 
         cursor: pointer;
    }
 
-   .item_111:hover{color:#b65353;}
-
+   .item_111:hover{color:#df2b2b;}
    
 </style>
 <body>
@@ -103,17 +109,26 @@
 
       <!-- app分类计数 -->
       <div id="count"></div>
-
       <div id="i"></div>
+      
       
 </body>
 
 <script>
+
+    //跟随页面修改字体大小
+     function placeholderPic(){
+        var w = document.documentElement.offsetWidth;
+        document.documentElement.style.fontSize=w/40+'px';
+    }
+    placeholderPic();
+    window.onresize=function(){
+        placeholderPic();
+    }
+
     // 获取app数据
     window.onload = function (){
     $.get("http://127.0.0.1:8080/do/page", function (data, status) {
-        
-
 
         // main
         page()
@@ -196,7 +211,7 @@
             var html = ""
             for(i=0;i<data["data"][i]["Id"];i++){
                 if(data["data"][i]["Category"]==" "+index){
-                    html += `<div id="item"  class="col-xs-6 col-md-4 >
+                    html += `<div id="item"  class="col-xs-6 col-md-4" >
                     <img id="imgs" src="`
                     +data["data"][i]["logo"]+ 
                     `" alt="WX20210316-120917@2x_gaitubao_119x119 _1_.png">

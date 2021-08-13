@@ -37,6 +37,7 @@ func main() {
 	r.GET("/user/to/update", To_update)
 	r.POST("/user/do/update", Do_update)
 
+	r.POST("/user/emailyzm", Email_Yzm)
 	r.POST("/user/email", Email_login)
 
 	//主页
