@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" connectionConfig="{&quot;serverAliveInterval&quot;:300}" id="7ab1296f-481a-4a10-8f36-7135ac258be7" port="22" customName="share" nameFormat="CUSTOM">
+        <option name="customName" value="share" />
+      </sshConfig>
+    </configs>
+  </component>
+</project>

@@ -167,13 +167,13 @@
                     //登录成功关闭窗口
                     myalert('登录成功');
                     //窗口关闭时间
-                    setTimeout(function(){
-                        parent.location.reload(true);
-                        var index = parent.layer.getFrameIndex(window.name);
-                        parent.layer.close(index);
-                        },1);
+                    // setTimeout(function(){
+                    //     parent.location.reload(true);
+                    //     var index = parent.layer.getFrameIndex(window.name);
+                    //     parent.layer.close(index);
+                    //     },1);
                 }else{
-                    myalert('账号或密码错误');
+                    myalert("登录失败")
                 }
             },
             fail:function(data){

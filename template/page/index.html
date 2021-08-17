@@ -96,7 +96,7 @@
 
     <!-- 导航栏 -->
       <div class="jumbotron">
-        <h1>Welcome, Hiahia!</h1>
+        <h1 id="WelcomeName"></h1>
         <nav class="navbar navbar-inverse">
             <a href="page" id="itme_nav" class="navbar-brand">首页</a>
             <a href="/to/community" id="itme_nav" class="navbar-brand">社区</a>
@@ -109,7 +109,6 @@
 
       <!-- app分类计数 -->
       <div id="count"></div>
-      <div id="i"></div>
       
       
 </body>
@@ -127,12 +126,15 @@
     }
 
     // 获取app数据
-    window.onload = function (){
+    send()
+
+    function send(){
     $.get("http://127.0.0.1:8080/do/page", function (data, status) {
 
         // main
         page()
         countPart()
+        welcomeName()
         
 
          //点击获取全部内容
@@ -152,6 +154,18 @@
 
         //点击获取人工智能分类
         $("#robot").click(function() {htmlPage("人工智能")})
+
+        //欢迎语
+        function welcomeName(){
+            var name = ""
+            if(data["data"][i]["Id"]!=""){
+                name = `<h1>Welcome,`+data["data"][i]["Id"]+`</h1>`
+            }else{
+                name = `<h1>Welcome,Hiahia</h1>`
+            }
+
+            $("#WelcomeName").html(name);
+        }
 
 
         //导航栏+计数

@@ -1,6 +1,7 @@
 package reptile
 
 import (
+	"User/common"
 	"User/model"
 	"fmt"
 	"io/ioutil"
@@ -14,17 +15,9 @@ import (
 var (
 	// data = `<div class="link_item">[\s\S]+?<img[\s\S]+?src="([\s\S]+?)"[\s\S]+?<a[\s\S]+?href="([\s\S]+?)"[\s\S]+?>([\s\S]+?)<[\s\S]+?class="description a_animation">([\s\S]+?)<`
 	data = `<div class="link_item">[\s\S]+?<img[\s\S]+?src="([\s\S]+?)"[\s\S]+?<a[\s\S]+?href="([\s\S]+?)"[\s\S]+?>([\s\S]+?)<[\s\S]+?class="description a_animation">([\s\S]+?)<[\s\S]+?class="category"[\s\S]+?>([\s\S]+?)<`
-	Info []Data
+	Info []model.Data
 )
 
-type Data struct {
-	Id       int
-	Appname  string
-	Explain  string
-	Addr     string
-	Imgs     string
-	Category string
-}
 
 //处理错误
 func HandleErr(err error, when string) {
@@ -52,18 +45,18 @@ func Fuun_data() {
 
 func Data_set(name, explain, href, images, category string) {
 
-	model.DB.AutoMigrate(&Data{})
+	common.DB.AutoMigrate(&model.Data{})
 
 	// //增加
 
-	model.DB.Create(&Data{Appname: name, Explain: explain, Addr: href, Imgs: images, Category: category})
+	common.DB.Create(&model.Data{Appname: name, Explain: explain, Addr: href, Imgs: images, Category: category})
 }
 
 func Data_get() {
 
-	var d []Data
+	var d []model.Data
 
-	model.DB.Find(&d)
+	common.DB.Find(&d)
 
 	Info = append(Info, d...)
 }

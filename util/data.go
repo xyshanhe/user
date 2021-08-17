@@ -2,7 +2,7 @@ package util
 
 import "github.com/jinzhu/gorm"
 
-// 用户数据
+// UserInfo 用户数据
 type UserInfo struct {
 	// 定义结构体去前端绑定参数 form就写form json就写json
 	gorm.Model
@@ -17,7 +17,7 @@ type UserInfo struct {
 	// err := c.ShouldBind(&结构体) 获取前端内容
 }
 
-//主页数据
+// Code_data app内容
 type Code_data struct {
 	Appname string `form:"appname" json:"appname"`
 	Explain string `form:"explain" json:"explain"`
@@ -25,7 +25,7 @@ type Code_data struct {
 	Imgs    string `form:"imgs" json:"imgs"`
 }
 
-//发帖数据
+// Stick_data 发帖
 type Stick_data struct {
 	Title string `form:"title" json:"title"`
 	Data  string `form:"data" json:"data"`

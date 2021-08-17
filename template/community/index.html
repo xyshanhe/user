@@ -28,7 +28,7 @@
    #description{margin:0.2% 0 0 0.2%;}
    #theme{margin:0% 0 0 0.2%;font-size: 0.45rem;color: rgb(94, 35, 35);}
    #user{margin: 0 0 0 0.2%;font-size: 0.29rem;}
-   #time{margin: -1% 0 0 30%;font-size: 0.29rem;}
+   #time{margin: -1% 0 0 50%;font-size: 0.29rem;}
 
 
    #article_style:hover {background-color: rgb(231, 231, 231); }
@@ -45,14 +45,13 @@
         margin: auto;
     }
 
-
 </style>
 
 <body>
 
     <!-- 导航栏 -->
     <div class="jumbotron" >
-        <h1>Welcome, Hiahia!</h1>
+        <h1 id=WelcomeName></h1>
         <nav class="navbar navbar-inverse">
             <a href="page" id="itme_nav" class="navbar-brand">首页</a>
             <a href="/to/community" id="itme_nav" class="navbar-brand">社区</a>
@@ -64,7 +63,7 @@
         <iframe id="post_iframe" frameborder="0" name="mainFrame2" scrolling="no"></iframe>
     
     <form>
-        <div title="http://127.0.0.1:8080/community/to/share"  onclick="func1(this)" id="share" class="btn btn-default" href="#" role="button">分享</div> 
+        <div title="http://127.0.0.1:8080/community/to/share"  onclick="func1(this)" id="share" class="btn btn-default" >分享</div> 
     </form>
 
 </body>
@@ -94,11 +93,10 @@ function func1(obj){
     }
 
     //获取发帖内容
-    window.onload = function (){
+    function send(){
         $.get("http://127.0.0.1:8080/do/community", function (data, status) {
           var html = ""
           for(i=0;i<data["data"][i]["id"];i++){
-              console.log(data)
             html += `<div id="article_style" class="col-xs-12 col-md-12"><div id="theme">
                     <p>`
                     +data["data"][i]["title"]+
@@ -118,9 +116,23 @@ function func1(obj){
                     </div>
                     </div>`
             }
-          $("#i").html(html);
+            $("#i").html(html);
+
+           //欢迎语
+            var name = ""
+            if(data["data"][i]["id"]!=""){
+                name = `<h1>Welcome,`+data["data"][i]["id"]+`</h1>`
+            }else{
+                name = `<h1>Welcome,Hiahia</h1>`
+            }
+            $("#WelcomeName").html(name);
         }); 
     }
+    send()
+
+    // setInterval(function(){
+    //     send()
+    // },5000)
 
       //日期计算
     function formatDate(val) {
