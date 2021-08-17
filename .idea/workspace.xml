@@ -2,39 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d5f3f2c-efdb-40da-a04e-025c44b7d5f8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/User.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sshConfigs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controller/CommunityController.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controller/PageController.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controller/UserContorller.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/PageModel.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/ShareModel.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/database.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/database.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/application.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dto/dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/dto/dto.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware/middleware.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/middleware.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/share/share.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/share.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/userdb.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/userdb.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/usermodel/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/UserModel.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reptile/fuun.go" beforeDir="false" afterPath="$PROJECT_DIR$/reptile/fuun.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/route.go" beforeDir="false" afterPath="$PROJECT_DIR$/route.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/community/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/community/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/page/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/page/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/register/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/register/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/share/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/share/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/updatapwd/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/updatapwd/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/userlogin/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/userlogin/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/data.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/data.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/jwt.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
