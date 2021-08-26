@@ -21,7 +21,7 @@ func AuthMiddleware() gin.HandlerFunc {
 			ctx.Abort()
 			return
 		}
-		tokenString = tokenString[7:]
+		tokenString = tokenString[7:] //截取字符“Bearer ”
 
 		token, claims, err := ParesToken(tokenString)
 

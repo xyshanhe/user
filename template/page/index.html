@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="/static/js/jquery-3.6.0.min.js"></script>
     <link rel="icon" href="data:image/ico;base64,aWNv">
+    <link rel="shortcut icon" href="#"/>
 </head>
 <style>
     a:link {color:#000000;}       /* 未访问链接*/
@@ -105,7 +106,7 @@
       </div>
 
       <!-- app -->
-      <div class="row" ></div>
+      <div class="row" onsubmit="return dosubmit()"></div>
 
       <!-- app分类计数 -->
       <div id="count"></div>
@@ -289,6 +290,17 @@
             }
         }
     }
+
+
+    var isCommitted = false
+        function dosubmit(){
+            if(isCommitted==false){
+                isCommitted==true;
+                return true
+            }else{
+                return false
+            }
+        }
     
     
 </script>

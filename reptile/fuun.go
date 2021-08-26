@@ -56,7 +56,16 @@ func Data_get() {
 
 	var d []model.Data
 
+	common.Getslq()
 	common.DB.Find(&d)
+
+	//反转数据
+	lengtg := len(d)
+	for i:=0;i<lengtg/2;i++{
+		temp := d[lengtg-1-i]
+		d[lengtg-1-i] = d[i]
+		d[i] = temp
+	}
 
 	Info = append(Info, d...)
 }

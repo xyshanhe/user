@@ -9,7 +9,7 @@ import (
 
 func CollectRoute(r *gin.Engine) *gin.Engine {
 
-	r.Use(middleware.AuthMiddleware())
+	//r.Use(middleware.AuthMiddleware())
 
 	r.LoadHTMLGlob("template/**/*")
 	r.Static("/static", "./static")

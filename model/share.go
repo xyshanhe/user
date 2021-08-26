@@ -24,5 +24,13 @@ func Get_stick() {
 
 	common.DB.Find(&s)
 
+	//反转数据
+	lengtg := len(s)
+	for i:=0;i<lengtg/2;i++{
+		temp := s[lengtg-1-i]
+		s[lengtg-1-i] = s[i]
+		s[i] = temp
+	}
+
 	ShareData = append(ShareData, s...)
 }
