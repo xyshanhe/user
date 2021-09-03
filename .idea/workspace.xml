@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d5f3f2c-efdb-40da-a04e-025c44b7d5f8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/sss/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/UserContorller.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/UserContorller.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.exe" beforeDir="false" afterPath="$PROJECT_DIR$/main.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware/middleware.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/middleware.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/share.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/share.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/reptile/fuun.go" beforeDir="false" afterPath="$PROJECT_DIR$/reptile/fuun.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/route.go" beforeDir="false" afterPath="$PROJECT_DIR$/route.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/template/page/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/page/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/userlogin/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/userlogin/login.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

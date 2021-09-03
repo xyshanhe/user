@@ -8,8 +8,6 @@
     <title>HiahiaShare</title>
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="/static/js/jquery-3.6.0.min.js"></script>
-    <link rel="icon" href="data:image/ico;base64,aWNv">
-    <fmt:formatDate value="${activity.startTime}" pattern="yyyy-MM-dd HH:mm:ss" /> 
 </head>
 
 <style>
@@ -24,7 +22,7 @@
         margin:18px 0px 0px 18px;
    }
 
-   #share{position: absolute;top: 25%;left: 0.5%;width: 80px;height: 26px;}
+   #share{position: absolute;top: 24.5%;left: 0.5%;width: 7em;height: 2.3em;background-color: rgb(46, 46, 46);color:rgb(187, 187, 187);}
    #description{margin:0.2% 0 0 0.2%;}
    #theme{margin:0% 0 0 0.2%;font-size: 0.45rem;color: rgb(94, 35, 35);}
    #user{margin: 0 0 0 0.2%;font-size: 0.29rem;}
@@ -96,7 +94,7 @@ function func1(obj){
     function send(){
         $.get("http://127.0.0.1:8080/do/community", function (data, status) {
           var html = ""
-          for(i=0;i<data["data"][i]["id"];i++){
+          for(i in data["data"]){
             html += `<div id="article_style" class="col-xs-12 col-md-12"><div id="theme">
                     <p>`
                     +data["data"][i]["title"]+

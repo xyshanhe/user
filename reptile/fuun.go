@@ -15,9 +15,7 @@ import (
 var (
 	// data = `<div class="link_item">[\s\S]+?<img[\s\S]+?src="([\s\S]+?)"[\s\S]+?<a[\s\S]+?href="([\s\S]+?)"[\s\S]+?>([\s\S]+?)<[\s\S]+?class="description a_animation">([\s\S]+?)<`
 	data = `<div class="link_item">[\s\S]+?<img[\s\S]+?src="([\s\S]+?)"[\s\S]+?<a[\s\S]+?href="([\s\S]+?)"[\s\S]+?>([\s\S]+?)<[\s\S]+?class="description a_animation">([\s\S]+?)<[\s\S]+?class="category"[\s\S]+?>([\s\S]+?)<`
-	Info []model.Data
 )
-
 
 //处理错误
 func HandleErr(err error, when string) {
@@ -52,20 +50,21 @@ func Data_set(name, explain, href, images, category string) {
 	common.DB.Create(&model.Data{Appname: name, Explain: explain, Addr: href, Imgs: images, Category: category})
 }
 
-func Data_get() {
+func Data_get() []model.Data {
 
 	var d []model.Data
-
+	var info []model.Data
 	common.Getslq()
 	common.DB.Find(&d)
 
 	//反转数据
 	lengtg := len(d)
-	for i:=0;i<lengtg/2;i++{
+	for i := 0; i < lengtg/2; i++ {
 		temp := d[lengtg-1-i]
 		d[lengtg-1-i] = d[i]
 		d[i] = temp
 	}
+	info = append(info, d...)
 
-	Info = append(Info, d...)
+	return info
 }

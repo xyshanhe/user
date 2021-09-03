@@ -4,6 +4,7 @@ import (
 	"User/reptile"
 	"User/util"
 	"fmt"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -31,8 +32,9 @@ func content() []map[string]string {
 		arr1  map[string]string
 	)
 
-	reptile.Data_get()
-	for _, i := range reptile.Info {
+	var data = reptile.Data_get()
+
+	for _, i := range data {
 		arr1 = make(map[string]string)
 		arr1["appname"] = i.Appname
 		arr1["Exp"] = i.Explain

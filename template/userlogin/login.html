@@ -8,6 +8,9 @@
     <title>主页登录</title>
     <script src="/static/js/jquery-3.6.0.min.js"></script>
     <link rel="icon" href="data:image/ico;base64,aWNv">
+
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
+    <script src="/static/layui/layui.js"></script>
 </head>
 <style>
 
@@ -45,20 +48,10 @@
         color: #000000;
         padding-left: 10px;
     }
-    .button {
-        border-color: rgb(220, 205, 147);
-        background-color: rgba(255, 255, 255, 0.8);
-        color: rgb(0, 0, 0);
-        border-style: hidden;
-        border-radius: 10px;
-        width: 80px;
-        height:30px;
-        font-size: 15px;
-        border: 1px solid #E2E2E2;
-    }
+
     #the_password{
-        margin-top: 95px; /* 下偏右 */
-        margin-left: 5px; /* 左偏右 */
+        margin-top: 65px; /* 下偏右 */
+        margin-left: -45px; /* 左偏右 */
         border-radius: 5px;
     }
     
@@ -68,24 +61,6 @@
     top:-8px;
     }
 
-/* alert弹窗修改样式 */
-    .mark {
-    display: none;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-    height: 40px;
-    line-height:40px;
-    width: 180px;
-    text-align: center;
-    font-size: 20px;
-    color: #fff;
-    background: rgba(0, 0, 0, 0.6);
-    border-radius:50px
-    }
 
     #close_btn{
         position:absolute;
@@ -103,14 +78,14 @@
         </div>
         <form>
             <h1 style="text-align: center;color: rgb(0, 0, 0);  margin-left: 70px;">登录</h1>
-            <p>&nbsp&nbsp&nbsp&nbsp账号：<input type="text" id="username" style=" margin-left: 20px;" placeholder="请输入账号"><label id="name_trip"></label></p>
-            <p>&nbsp&nbsp&nbsp&nbsp密码：<input type="password" id="password" style=" margin-left: 20px;" placeholder="请输入密码"><label id="password_trip"></label></p>
+            <p>&nbsp&nbsp&nbsp&nbsp账号：<input type="text" id="username" placeholder="请输入账号"></p>
+            <p>&nbsp&nbsp&nbsp&nbsp密码：<input type="password" id="password" placeholder="请输入密码"></p>
             <div style="text-align:  center;margin-top: 30px;">
-                <input type="button" class="button"value="登录" id="login_btn" style=" margin-left: 80px;">
-                <input onclick="btn1()" type="reset" class="button" value="注册">
+                <input type="button" class="layui-btn layui-btn-sm"value="登录" id="login_btn" style=" margin-left: 80px;">
+                <input onclick="btn1()" type="reset"class="layui-btn layui-btn-sm" value="注册">
             </div>
         </form>   
-        <button onclick="btn2()" id="the_password"  style="width: 80px;height: 26px;text-align: center;background-color: white;border: 1px solid #E2E2E2;">找回密码</button>
+        <button onclick="btn2()" id="the_password"class="layui-btn layui-btn-xs" >找回密码</button>
         <button id="close_btn">X</button>
     </div>
 
@@ -131,19 +106,6 @@
     }
     function btn2() {
     location.href = "/user/to/update"
-    }
-
-    
-    //alert弹窗
-    function myalert(str) {
-        var div = '<div class="mark"></div>';
-        $('body').append(div)
-        $('.mark').html(str);
-        $('.mark').show();
-        setTimeout(function() {
-            $('.mark').hide();
-            $('.mark').remove();
-        }, 1000)
     }
 
     //关闭按钮
@@ -173,16 +135,9 @@
             success:function(data){
                 // alert(data["data"]["token"])
                 if(data["code"]==200){      
-                    //登录成功关闭窗口
-                    myalert('登录成功');
-                    //窗口关闭时间
-                    // setTimeout(function(){
-                    //     parent.location.reload(true);
-                    //     var index = parent.layer.getFrameIndex(window.name);
-                    //     parent.layer.close(index);
-                    //     },1);
+                    layer.msg('登录成功');
                 }else{
-                    myalert("登录失败")
+                    layer.msg("登录失败")
                 }
             },
             fail:function(data){

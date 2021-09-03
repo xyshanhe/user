@@ -4,10 +4,10 @@ import (
 	"User/model"
 	"User/util"
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"net/http"
-)
 
+	"github.com/gin-gonic/gin"
+)
 
 //community 社区主页
 func To_community(c *gin.Context) {
@@ -33,8 +33,9 @@ func com_content() []map[string]interface{} {
 		arr1  map[string]interface{}
 	)
 
-	model.Get_stick()
-	for _, i := range model.ShareData {
+	var shareData = model.Get_stick()
+
+	for _, i := range shareData {
 		arr1 = make(map[string]interface{})
 		arr1["title"] = i.Title
 		arr1["data"] = i.Data

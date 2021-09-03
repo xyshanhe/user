@@ -1,4 +1,4 @@
-package	controller
+package controller
 
 import (
 	"User/common"
@@ -7,8 +7,9 @@ import (
 	"User/model"
 	"User/sendmail"
 	"User/util"
-	"github.com/gin-gonic/gin"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 // ToRegister 注册
@@ -92,21 +93,8 @@ func DoLogin(c *gin.Context) {
 		return
 	}
 
-
-	//if util.ComparePwd(user.User_password,userInfo.PassWord) == false{
-	//	c.JSON(http.StatusUnprocessableEntity, gin.H{"code": 400, "msg": "密码错误！！！"})
-	//	return
-	//}
 	//发放token
 	token, err := middleware.ReleastToken(user)
-
-	//发放token
-	//cookie,err:= c.Cookie("gin_cookie")
-	//if err != nil{
-	//	cookie="NotSet"
-	//	c.SetCookie("gin_cookie",token,60, "/","127.0.0.1",false,true)
-	//}
-	//fmt.Println("cookie的值是:",cookie)
 
 	mapData := map[string]interface{}{"code": 200, "data": gin.H{"token": token}, "msg": "登录成功"}
 
@@ -213,9 +201,3 @@ func Info(c *gin.Context) {
 	user, _ := c.Get("user")
 	c.JSON(http.StatusOK, gin.H{"code": 200, "data": gin.H{"user": dto.ToUserDto(user.(model.User))}})
 }
-
-
-
-
-
-
