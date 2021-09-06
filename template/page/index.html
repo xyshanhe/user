@@ -155,7 +155,7 @@
         //点击获取人工智能分类
         $("#robot").click(function() {htmlPage("人工智能")})
 
-        //欢迎语
+        //欢迎语 +用户名称
         function welcomeName(){
             var name = ""
             if(data["data"][i]["Id"]!=""){
@@ -215,9 +215,7 @@
                     `</p></div><b><div id="category" class="cg">`
                     +data["data"][i]["Category"]+
                     `</div></b></div>`
-                    console.log("一共",i)
             }
-            
             $(".row").html(html);
             modify_color()
         }
@@ -246,14 +244,8 @@
                 }
             $(".row").html(html);
             modify_color()
-        }
-    });
-}
-
-    // 获取iframe弹窗
-    function func(obj){
-        var myFrame = "mainFrame" + obj.value;
-        window.open(obj.title,myFrame)
+            }
+        });
     }
 
     //修改分类颜色
@@ -265,44 +257,23 @@
         for(var j=0;j<aDiv.length;j++){
             // console.log("进入循环",aDiv[j].innerHTML)
             arr[j]=aDiv[j].innerHTML;
-            if(arr[j]==" 游戏"){
-                aDiv[j].style.color="black";
-                aDiv[j].style.background="rgb(16, 227, 235)";
-            }
+            if(arr[j]==" 游戏"){aDiv[j].style.background="rgb(16, 227, 235)";}
     
-            if(arr[j]==" 创意"){
-                aDiv[j].style.color="black";
-                aDiv[j].style.background="rgb(255, 197, 36)";
-            }
+            if(arr[j]==" 创意"){aDiv[j].style.background="rgb(255, 197, 36)";}
 
-            if(arr[j]==" 世界"){
-                aDiv[j].style.color="black";
-                aDiv[j].style.background="rgb(33, 93, 221)";
-            }
+            if(arr[j]==" 世界"){aDiv[j].style.background="rgb(33, 93, 221)";}
 
-            if(arr[j]==" 沙雕"){
-                aDiv[j].style.color="black";
-                aDiv[j].style.background="rgb(22, 255, 168)";
-            }
+            if(arr[j]==" 沙雕"){aDiv[j].style.background="rgb(22, 255, 168)";}
 
-            if(arr[j]==" 人工智能"){
-                aDiv[j].style.color="black";
-                aDiv[j].style.background="rgb(241, 93, 8)";
-            }
+            if(arr[j]==" 人工智能"){aDiv[j].style.background="rgb(241, 93, 8)";}
         }
     }
 
-
-    var isCommitted = false
-        function dosubmit(){
-            if(isCommitted==false){
-                isCommitted==true;
-                return true
-            }else{
-                return false
-            }
-        }
-    
+        // 获取iframe弹窗
+        function func(obj){
+        var myFrame = "mainFrame" + obj.value;
+        window.open(obj.title,myFrame)
+    }
     
 </script>
 </html>

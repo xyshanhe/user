@@ -96,7 +96,7 @@ func DoLogin(c *gin.Context) {
 	//发放token
 	token, err := middleware.ReleastToken(user)
 
-	mapData := map[string]interface{}{"code": 200, "data": gin.H{"token": token}, "msg": "登录成功"}
+	mapData := map[string]interface{}{"code": 200, "data": gin.H{"token": token, "username": user.User_account_name}, "msg": "登录成功"}
 
 	//返回结果
 	c.JSON(http.StatusOK, mapData)

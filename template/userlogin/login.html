@@ -93,14 +93,6 @@
 
 <script>
 
-    function getMyCookie(key){
-        var val = "";
-
-        var cookies = document.cookie;
-    }
-
-
-
     function btn1() {
     location.href = "/user/to/register"
     }
@@ -133,14 +125,14 @@
                 "password":password,
             },
             success:function(data){
-                // alert(data["data"]["token"])
                 if(data["code"]==200){      
                     layer.msg('登录成功');
-                }else{
-                    layer.msg("登录失败")
                 }
             },
-            fail:function(data){
+            error:function(data){
+                if(data["code"]!=200){
+                    layer.msg("用户名或密码错误")
+                }
             }
         })
     }
