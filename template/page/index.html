@@ -75,10 +75,7 @@
     /* app标题 */
     #count{
         position:absolute; 
-        top:25%;
-        left:0.8%;
-        display: inline-block;
-        
+        top:24%;
     }
 
     .item_111{
@@ -90,7 +87,7 @@
         cursor: pointer;
    }
 
-   .item_111:hover{color:#df2b2b;}
+   .item_111:hover{color:#666565;}
    
 </style>
 <body>
@@ -102,14 +99,16 @@
             <a href="page" id="itme_nav" class="navbar-brand">首页</a>
             <a href="/to/community" id="itme_nav" class="navbar-brand">社区</a>
             <a href="" title="http://127.0.0.1:8080/user/to/login" onclick="func(this)" value="1" id="itme_nav" class="navbar-brand">登录/注册</a>
-          </nav>
+          </nav>   
       </div>
 
-      <!-- app -->
-      <div class="row" onsubmit="return dosubmit()"></div>
+    <!-- app -->
+    <div class="row" onsubmit="return dosubmit()"></div>
 
-      <!-- app分类计数 -->
-      <div id="count"></div>
+    <!-- app分类计数 -->
+    <div id="count" class="navbar-brand"></div>
+
+     
       
 </body>
 
@@ -190,7 +189,7 @@
                         <p id="originality" class="item_111">创意(`+originality+`)</p>
                         <p id="word" class="item_111">世界(`+word+`)</p>
                         <p id="sb" class="item_111" >沙雕(`+sb+`)</p>
-                        <o id="robot" class="item_111">人工智能(`+robot+`)</p>`
+                        <p id="robot" class="item_111">人工智能(`+robot+`)</p>`
 
                 //上传到导航栏
                 $("#count").html(count);
