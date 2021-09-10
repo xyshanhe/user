@@ -24,3 +24,39 @@
 10，主页分享的数据倒序显示  ##修改完
 
 
+
+--------------------主页分页显示------------------
+
+   <!-- 分页 -->
+    <!-- <div id="demo20"></div>
+    <ul id="biuuu_city_list"></ul> 
+     -->
+      
+
+     //分页
+        // var countapp = [];
+        // for (i in data["data"]){
+        //     countapp.push(data["data"][i]["appname"])
+        // }
+
+        // layui.use(['laypage', 'layer'], function(){
+        //     var laypage = layui.laypage
+        //     ,layer = layui.layer;
+        //     //调用分页
+        //     laypage.render({
+        //         elem: 'demo20'
+        //         ,count: countapp.length
+        //         ,jump: function(obj){
+        //         //模拟渲染
+        //         document.getElementById('biuuu_city_list').innerHTML = function(){
+        //             var arr = []
+        //             ,thisData = countapp.concat().splice(obj.curr*obj.limit - obj.limit, obj.limit);
+        //             layui.each(thisData, function(index, item){
+        //             arr.push('<li>'+ item +'</li>');
+        //             });
+        //         return arr.join('');
+        //         }();
+        //         }
+        //     });
+        // });
+            

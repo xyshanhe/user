@@ -1,0 +1,347 @@
+{{define "page/index.html"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hiahia-share</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="/static/js/jquery-3.6.0.min.js"></script>
+    <link rel="icon" href="data:image/ico;base64,aWNv">
+</head>
+
+<style type="text/css">
+    ul{margin: 30px auto; width: 34%; height: 2%; padding: 0px; background-color:rgb(0, 0, 0); border-radius:2%;}
+
+    li:hover{transform: scale(1.2,1.2);box-shadow: 0 0 16; cursor: pointer;}
+    
+    li{list-style-type: none; float: left;}
+
+    a:hover{text-decoration:none;}
+
+    a:link {color:#ffffff;}       /* 未访问链接*/
+    a:visited {color:#ffffff;}  /* 已访问链接 */
+    #nav:hover {color:#ffffff;}   /* 鼠标移动到链接上 */
+    a:active{color:#ffffff;}   /* 鼠标点击时 */
+
+    #nav{
+        width: 80px;
+        line-height: 30px; 
+        color:#bdbbbb; 
+        font-size: 13px; 
+        font-weight: 600;
+        float: left;
+        margin:0px 20px 0px 0px; 
+    } 
+
+    #item{
+        width: 31%;
+        height: 43%;
+        background-color:#232222;
+        font-size: 15px;
+        border-radius: 10px;
+        list-style-type: none;
+        float: left;
+        margin:13px 13px 13px 13px; 
+   }
+    #i{
+        width: 80%;
+        height: 58%;
+        position:absolute; 
+        top:50%;
+        left:35%;
+        margin:-16% 0 0 -25%; 
+   }
+
+   #item:hover { box-shadow: 0px 1rem 2rem 0px rgba(255, 255, 255, 0.15); transform: translate(0,-8px); transition-delay: 0s !important;}
+
+   img{ margin:18px 18px 18px 18px; width: 70px; height: 70px; border-radius:20px;}
+
+
+   #name{
+        margin:0px 0px 0px 18px; 
+        font-weight: 700;
+        /* font-size: 1vw; */
+        font-size: 18px;
+        cursor: pointer;/*鼠标变成手指样式*/
+    }
+
+   #explain{margin:5px 0px 0px 18px;width: 93%; height: 17%; font-weight: 400px; color: #b5acac;}
+
+
+   iframe{
+        width: 430px;
+        height: 600px;
+        margin:13px 13px 13px 13px; 
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border-radius: 30px;
+        margin: auto;
+        overflow: auto;
+        background-attachment: fixed;
+   }
+
+   .name{width:80%; font-size:em;}
+   .name{width:20%;font-size:em;}
+
+
+   @media(max-width:768px){
+       html{
+           font-size: 10px;
+       }
+   }
+
+   #nav1{
+        width: 20%;
+        background-color: antiquewhite;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+   }
+
+   #count{
+    color:#bdbbbb; 
+    /* text-align: center;  */
+    font-size: 19px; 
+    font-weight: 600; 
+    position:absolute; 
+    top:15%;
+    left:11.5%;
+    width: 100%;
+   }
+   
+   .item_111{
+       float: left;
+       margin:0px 20px 0px 0px; 
+       cursor: pointer;
+   }
+   .item_111:hover{color:#ffffff;}
+
+   #category{
+        position: relative;
+        top: 30px;
+        left: 3%;
+        width: 20%;
+        height: 9%;
+        background-color: rgb(255, 197, 36);
+        border-radius:10px;
+        text-align:center ;   
+        font-family: "microsoft yahei";
+   }
+   
+
+</style>
+
+<body style="background-color: #171514; min-width: 200px;">
+    <!-- <div id="logo">
+        <img src="/static/images/pagelogo.png" width="-200px" height="-200px">
+    </div> -->
+
+    <div>
+        <ul>   
+            <li><a id="nav" href=""><div class="glyphicon glyphicon-home"></div> 首页</a></li>
+            <li><a id="nav" href="/to/community"><div class="glyphicon glyphicon-edit"></div> 社区</a></li>
+            <li><a id="nav" href=""><div class="glyphicon glyphicon-knight"></div> 游戏</a></li>
+            <li><a id="nav" href=""><div class="glyphicon glyphicon-paperclip"></div> 创意</a></li>
+            <li><a id="nav" href=""><div class="glyphicon glyphicon-folder-open"></div> 素材</a></li>
+            <li title="http://127.0.0.1:8080/user/to/login" onclick="func(this)" value="1"><a id="nav"><div class="glyphicon glyphicon-user"></div> 登录/注册</a></li>
+        </ul>
+    
+    </div>  
+    <div id="i"></div>
+    <iframe id="fr" frameborder="0" name="mainFrame1" scrolling="no"></iframe>
+    <div id="count"></div>
+
+</body> 
+
+<script>
+    function func(obj){
+        var myFrame = "mainFrame" + obj.value;
+        window.open(obj.title,myFrame)
+    }
+
+    function but1() {
+       location.href="/user/to/login"
+    }
+    
+    // $(document).ready(function(){}
+    window.onload = function (){
+        $.get("http://127.0.0.1:8080/do/page", function (data, status) {
+
+            //导航栏+计数
+            function countPart(){
+                var game = 0
+                var originality = 0
+                var word = 0
+                var sb = 0
+                var robot = 0
+
+                for(i=0;i<data["data"][i]["Id"];i++){
+                    if(data["data"][i]["Category"]==" 游戏"){game +=1}
+                    if(data["data"][i]["Category"]==" 创意"){originality +=1}
+                    if(data["data"][i]["Category"]==" 世界"){word +=1}
+                    if(data["data"][i]["Category"]==" 沙雕"){sb +=1}
+                    if(data["data"][i]["Category"]==" 人工智能"){robot +=1}
+                }
+                
+                
+                //统计类别数量
+                count = `<p id="whole" class="item_111">全部(`+(game+word+originality+sb+robot)+`)</p>
+                        <p id="game" class="item_111" >游戏(`+word+`)</p>
+                        <p id="originality" class="item_111">创意(`+originality+`)</p>
+                        <p id="word" class="item_111">世界(`+word+`)</p>
+                        <p id="sb" class="item_111" >沙雕(`+sb+`)</p>
+                        <o id="robot" class="item_111">人工智能(`+robot+`)</p>`
+
+                //上传到导航栏
+                $("#count").html(count);
+            }
+            
+            //调用主页
+            page()      
+
+            //调用计数函数
+            countPart()
+
+            //点击获取全部内容
+            $("#whole").click(function() {page()})
+
+            //点击获取游戏分类
+            $("#game").click(function() {htmlPage("游戏")})
+
+            //点击获取创意分类
+            $("#originality").click(function() {htmlPage("创意")})
+            
+            //点击获取世界分类
+            $("#word").click(function() {htmlPage("世界")})
+            
+            //点击获取沙雕分类
+            $("#sb").click(function() {htmlPage("沙雕")})
+
+            //点击获取人工智能分类
+            $("#robot").click(function() {htmlPage("人工智能")})
+
+            //分类数据                                                                     
+            function htmlPage(index){
+                //主页的内容
+                var html = ""
+                for(i=0;i<data["data"][i]["Id"];i++){
+                    if(data["data"][i]["Category"]==" "+index){
+                        html += `<div id="item" >
+                        <img id="imgs" src="`
+                        +data["data"][i]["logo"]+ 
+                        `" alt="WX20210316-120917@2x_gaitubao_119x119 _1_.png">
+                        <div id="name">
+                        <a id="addr" href="`
+                        +data["data"][i]["Addr"]+
+                        `">`
+                        +data["data"][i]["appname"]+`<div class="glyphicon glyphicon-share-alt"></div>
+                        </a></div>
+                        <div id="explain"><p id="Explain" >`
+                        +data["data"][i]["Exp"]+
+                        `</p></div><b><div id="category" class="cg">`
+                        +data["data"][i]["Category"]+
+                        `</div></b></div>`
+                        }
+                    }
+                $("#i").html(html);
+                modify_color()
+            }
+
+            //主页数据
+            function page(){
+                var html = ""
+                for(i=0;i<data["data"][i]["Id"];i++){
+                        html += `<div id="item" >
+                        <img id="imgs" src="`
+                        +data["data"][i]["logo"]+ 
+                        `" alt="WX20210316-120917@2x_gaitubao_119x119 _1_.png">
+                        <div id="name">
+                        <a id="addr" href="`
+                        +data["data"][i]["Addr"]+
+                        `">`
+                        +data["data"][i]["appname"]+`<div class="glyphicon glyphicon-share-alt"></div>
+                        </a></div>
+                        <div id="explain"><p id="Explain" >`
+                        +data["data"][i]["Exp"]+
+                        `</p></div><b><div id="category" class="cg">`
+                        +data["data"][i]["Category"]+
+                        `</div></b></div>`
+                    }
+                $("#i").html(html);
+                modify_color()
+            }
+
+            //修改分类颜色
+            function modify_color(){
+
+                var aDiv=document.getElementsByClassName("cg");
+                var arr=new Array();
+                
+                for(var j=0;j<aDiv.length;j++){
+                    // console.log("进入循环",aDiv[j].innerHTML)
+                    arr[j]=aDiv[j].innerHTML;
+                    if(arr[j]==" 游戏"){
+                        aDiv[j].style.color="black";
+                        aDiv[j].style.background="rgb(16, 227, 235)";
+                    }
+                    
+                    if(arr[j]==" 创意"){
+                        aDiv[j].style.color="black";
+                        aDiv[j].style.background="rgb(255, 197, 36)";
+                    }
+
+                    if(arr[j]==" 世界"){
+                        aDiv[j].style.color="black";
+                        aDiv[j].style.background="rgb(33, 93, 221)";
+                    }
+
+                    if(arr[j]==" 沙雕"){
+                        aDiv[j].style.color="black";
+                        aDiv[j].style.background="rgb(22, 255, 168)";
+                    }
+
+                    if(arr[j]==" 人工智能"){
+                        aDiv[j].style.color="black";
+                        aDiv[j].style.background="rgb(241, 93, 8)";
+                    }
+                }
+            }
+            
+        });
+    }
+</script>
+</html>
+{{end}}
+
+<!-- 
+六、图标类
+1.阿里巴巴矢量图库：https://www.iconfont.cn/ 
+2.Ikonate：https://ikonate.com/ 
+3.iconstore：https://iconstore.co/ 
+4.icoon：https://icooon-mono.com/ 
+5.iconfinder：https://www.iconfinder.com/ -->
+
+<!-- 十、配色
+1.中国色彩：http://zhongguose.com/ 
+3.ColorHex：https://www.colorhexa.com/ 
+4.优色网配色专区：https://color.uisdc.com/ 
+4. ColorDrop：https://www.colordrop.io/ 
+5.LOL Colors：https://www.webdesignrankings.com/resources/lolcolors/ 
+6.colorHunt：https://colorhunt.co/ 
+7.Adobe Color：https://color.adobe.com/zh/create/color-wheel 
+8.uigradients：https://uigradients.com/#PiggyPink 
+9.webgradient：https://webgradients.com/ -->
+
+<!-- 三：静态图片
+1.PH：https://pxhere.com/ 
+2.CC0图片网：https://cc0.cn/ 
+3.Foodiesfeed：https://www.foodiesfeed.com/ 
+4.Unplash：https://unsplash.com/ 
+5.Pixabay：https://pixabay.com/  -->
+

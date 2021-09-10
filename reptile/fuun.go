@@ -13,7 +13,6 @@ import (
 )
 
 var (
-	// data = `<div class="link_item">[\s\S]+?<img[\s\S]+?src="([\s\S]+?)"[\s\S]+?<a[\s\S]+?href="([\s\S]+?)"[\s\S]+?>([\s\S]+?)<[\s\S]+?class="description a_animation">([\s\S]+?)<`
 	data = `<div class="link_item">[\s\S]+?<img[\s\S]+?src="([\s\S]+?)"[\s\S]+?<a[\s\S]+?href="([\s\S]+?)"[\s\S]+?>([\s\S]+?)<[\s\S]+?class="description a_animation">([\s\S]+?)<[\s\S]+?class="category"[\s\S]+?>([\s\S]+?)<`
 )
 
@@ -45,7 +44,7 @@ func Data_set(name, explain, href, images, category string) {
 
 	common.DB.AutoMigrate(&model.Data{})
 
-	// //增加
+	// 增加
 
 	common.DB.Create(&model.Data{Appname: name, Explain: explain, Addr: href, Imgs: images, Category: category})
 }

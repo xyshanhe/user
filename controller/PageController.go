@@ -8,6 +8,23 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+func To_Page1(c *gin.Context) {
+	c.HTML(200, "page1/page1.html", nil)
+}
+
+func Do_Page1(c *gin.Context) {
+	var code util.Code_data
+
+	err := c.ShouldBind(&code)
+	util.Check(err)
+
+	c.JSON(200, gin.H{
+		"data":    content(),
+		"status":  200,
+		"message": "数据获取成功",
+	})
+}
+
 // Page 主页逻辑
 func To_Page(c *gin.Context) {
 	c.HTML(200, "page/index.html", nil)

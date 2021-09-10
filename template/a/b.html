@@ -1,0 +1,193 @@
+{{define "community/index.html"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="/static/js/jquery-3.6.0.min.js"></script>
+    <link rel="icon" href="data:image/ico;base64,aWNv">
+    <fmt:formatDate value="${activity.startTime}" pattern="yyyy-MM-dd HH:mm:ss" /> 
+</head>
+
+<style type="text/css">
+    ul{margin: 30px auto; width: 34%; height: 2%; padding: 0px; background-color:rgb(0, 0, 0); border-radius:10px;}
+
+    li:hover{transform: scale(1.2,1.2);box-shadow: 0 0 16; cursor: pointer;}
+    
+    li{list-style-type: none; float: left;}
+
+    a:hover{text-decoration:none;}
+
+    a:link {color:#ffffff;}       /* 未访问链接*/
+    a:visited {color:#ffffff;}  /* 已访问链接 */
+    #nav:hover {color:#ffffff;}   /* 鼠标移动到链接上 */
+    a:active{color:#ffffff;}   /* 鼠标点击时 */
+
+    #nav{
+        display: block; 
+        width: 100px;
+        height: 30px; 
+        line-height: 30px; 
+        margin: 0px 0px; 
+        color:#bdbbbb; 
+        text-align: center; 
+        text-decoration: none;  
+        font-size: 13px; 
+        font-weight: 600;} 
+
+
+   #name{
+        margin:0px 0px 0px 18px; 
+        font-weight: 700;
+        /* font-size: 1vw; */
+        font-size: 18px;
+        cursor: pointer;/*鼠标变成手指样式*/
+    }
+
+
+    #login_iframe{
+        width: 450px;
+        height: 600px;
+        margin:13px 13px 13px 13px; 
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border-radius: 30px;
+        margin: auto;
+        overflow: auto;
+        background-attachment: fixed;
+   }
+   
+   #post_iframe{
+        width: 30%;
+        height: 50px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border-radius: 10px; 
+   }
+
+
+   .name{width:80%; font-size:em;}
+   .name{width:20%;font-size:em;}
+
+
+   @media(max-width:768px){
+       html{
+           font-size: 10px;
+       }
+   }
+
+    #article_style{
+        width: 70%;
+        height: 43%;
+        background-color:#232222;
+        font-size: 15px;
+        border-radius: 10px;
+        list-style-type: none;
+        float: left;
+        margin:2% 0 0 15%;
+        border: 2px solid rgb(91, 99, 98); 
+   }
+    #i{
+        width: 80%;
+        height: 50%;
+        position:absolute; 
+        top:45%;
+        left:35%;
+        margin:-16% 0 0 -25%; 
+   }
+
+   #share{position: absolute;top: 13%;left: 22%;width: 80px;height: 26px;}
+   #description{margin:1.5% 0 0 1.5%; font-weight: 400px; color: #b5acac;width: 95%;height: 18%;}
+   #theme{color: #ffffff; cursor: posinter; font-weight: 700;margin:2.5% 0 0 1%;font-size: 19px;}
+   #user{ position:absolute;margin:3.9% 0 0 1%;color: rgb(177, 153, 74)}
+   #time{position: absolute; margin: 3.9% 0 0 55%; color: rgb(177, 153, 74)}
+
+</style>
+
+<body style="background-color: #171514; min-width: 200px;">
+    <div>
+        <ul>   
+            <li><a id="nav" href="page"><div class="glyphicon glyphicon-home"></div> 首页</a></li>
+            <li><a id="nav" href="/to/community"><div class="glyphicon glyphicon-edit"></div> 社区</a></li>
+            <li><a id="nav" href=""><div class="glyphicon glyphicon-knight"></div> 游戏</a></li>
+            <li><a id="nav" href=""><div class="glyphicon glyphicon-paperclip"></div> 创意</a></li>
+            <li><a id="nav" href=""><div class="glyphicon glyphicon-folder-open"></div> 素材</a></li>
+            <li title="http://127.0.0.1:8080/user/to/login" onclick="func(this)" value="1"><a id="nav"><div class="glyphicon glyphicon-user"></div> 登录/注册</a></li>
+        </ul>
+    </div>  
+    
+    <!-- 登录 -->
+    <iframe id="login_iframe" frameborder="0" name="mainFrame1" scrolling="no"></iframe>
+
+    <div id="i"></div>
+
+    <!-- 发帖子 -->
+    <iframe id="post_iframe" frameborder="0" name="mainFrame2" scrolling="no"></iframe>
+    
+    <form>
+        <div title="http://127.0.0.1:8080/community/to/share"  onclick="func1(this)" id="share" class="btn btn-default" href="#" role="button">分享</div> 
+    </form>
+    
+</body> 
+<script>
+    //登录iframe
+     function func(obj){
+        var myFrame = "mainFrame" + obj.value;
+        window.open(obj.title,myFrame)
+    }
+
+    //发帖子iframe
+    function func1(obj){
+        var myFrame = "mainFrame2";
+        window.open(obj.title,myFrame)
+    }
+
+    //获取帖子数据
+    window.onload = function (){
+        $.get("http://127.0.0.1:8080/do/community", function (data, status) {
+          var html = ""
+
+          for(i=0;i<data["data"][i]["id"];i++){
+              console.log(data)
+            html += `<div id="article_style"><div id="theme">
+                    <a href=""><p style="color: rgb(252, 12, 12);">`
+                    +data["data"][i]["title"]+
+                    `</p></a></div>
+                    <div id="description"><p>`
+                    +data["data"][i]["data"]+
+                    `</p>
+                    </div>
+                    <div id="time">
+                    <p><div class="glyphicon glyphicon-time"></div>`
+                    +formatDate(data["data"][i]["createtime"])+`
+                    </p>
+                    </div>
+                    <div id="user">
+                    <p><div class="glyphicon glyphicon-user"></div> 管理员</p>
+                    </div>
+                    </div>`
+            }
+          $("#i").html(html);
+        }); 
+    }
+
+    //日期计算
+    function formatDate(val) {
+            var date = new Date(val);
+            var y = date.getFullYear();
+            var m = date.getMonth() + 1;
+            var d = date.getDate();
+            return y + '-' + m + '-' + d; }
+    
+</script>
+</html>
+{{end}}

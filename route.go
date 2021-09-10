@@ -38,6 +38,9 @@ func CollectRoute(r *gin.Engine) *gin.Engine {
 	r.GET("/to/page", controller.To_Page)
 	r.GET("/do/page", controller.Do_Page)
 
+	r.GET("/to/page1", controller.To_Page1)
+	r.GET("/do/page1", controller.Do_Page1)
+
 	//社区
 	r.GET("to/community", controller.To_community)
 	r.GET("do/community", controller.Do_community)
