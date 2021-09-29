@@ -3,9 +3,25 @@
   <component name="ChangeListManager">
     <list default="true" id="1d5f3f2c-efdb-40da-a04e-025c44b7d5f8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/CommunityController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/CommunityController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/PageController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/PageController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/UserContorller.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/UserContorller.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dto/dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/dto/dto.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.exe" beforeDir="false" afterPath="$PROJECT_DIR$/main.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middleware/middleware.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/middleware.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/ShareModel.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/ShareModel.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/share.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/share.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/userdb.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/userdb.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/reptile/fuun.go" beforeDir="false" afterPath="$PROJECT_DIR$/reptile/fuun.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/route.go" beforeDir="false" afterPath="$PROJECT_DIR$/route.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sendmail/mail.go" beforeDir="false" afterPath="$PROJECT_DIR$/sendmail/mail.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sss/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/sss/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/template/page/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/page/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/page1/paga1.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/page1/paga1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/userlogin/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/userlogin/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/data.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/data.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/hashuser.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/hashuser.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/功能.txt" beforeDir="false" afterPath="$PROJECT_DIR$/功能.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,11 +83,30 @@
       <recent name="G:\User\middleware" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="G:\User" />
       <recent name="G:\User\middleware" />
       <recent name="G:\User\model" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build main.go">
+  <component name="RunManager" selected="Go Build.go build fuun.go">
+    <configuration name="go build fuun.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="User" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <package value="User" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/reptile/fuun.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build main.go (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="User" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <package value="User" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/reptile/main.go" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="User" />
       <working_directory value="$PROJECT_DIR$" />
@@ -93,6 +128,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build fuun.go" />
+        <item itemvalue="Go Build.go build main.go (1)" />
         <item itemvalue="Go Build.go build main.go" />
       </list>
     </recent_temporary>

@@ -2,7 +2,7 @@ package model
 
 import "github.com/jinzhu/gorm"
 
-type Stick_data struct {
+type StickData struct {
 	gorm.Model
 	Title string
 	Data  string

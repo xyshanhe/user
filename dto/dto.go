@@ -9,6 +9,7 @@ type UserDto struct {
 	AccountName string `json:"AccountName,omtiempty"`
 }
 
+// ToUserDto 返回格式
 func ToUserDto(user model.User) UserDto {
 	return UserDto{
 		Name:        user.User_name,

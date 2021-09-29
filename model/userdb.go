@@ -1,13 +1,5 @@
 package model
 
-/*
------------------------------------
------------------------------------
-用户数据库信息（注册，更改，查询登录）
------------------------------------
------------------------------------
-*/
-
 import (
 	"User/common"
 	"User/util"
@@ -19,7 +11,7 @@ var (
 	UserInfo []User
 )
 
-// Set 增
+// Set 新建用户
 func Set(n string, p string, m string, an string) bool {
 
 	//创建表自动迁移
@@ -34,7 +26,7 @@ func Set(n string, p string, m string, an string) bool {
 	return true
 }
 
-//Get 查
+//Get 登录
 func Get(n string, p string) bool {
 	var u []User
 

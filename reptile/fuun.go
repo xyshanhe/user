@@ -16,7 +16,7 @@ var (
 	data = `<div class="link_item">[\s\S]+?<img[\s\S]+?src="([\s\S]+?)"[\s\S]+?<a[\s\S]+?href="([\s\S]+?)"[\s\S]+?>([\s\S]+?)<[\s\S]+?class="description a_animation">([\s\S]+?)<[\s\S]+?class="category"[\s\S]+?>([\s\S]+?)<`
 )
 
-//处理错误
+// HandleErr 处理错误
 func HandleErr(err error, when string) {
 	if err != nil {
 		fmt.Println(when, err)
@@ -24,7 +24,8 @@ func HandleErr(err error, when string) {
 	}
 }
 
-func Fuun_data() {
+// FuunData 获取爬虫数据
+func FuunData() {
 
 	resp, err := http.Get("https://fuun.fun/page4/")
 	HandleErr(err, `http.Get("https://fuun.fun/page4/")`)
@@ -36,11 +37,13 @@ func Fuun_data() {
 	allString := re.FindAllStringSubmatch(html, -1)
 
 	for _, x := range allString {
-		Data_set(x[3], x[4], x[2], x[1], x[5])
+		//Data_set(x[3], x[4], x[2], x[1], x[5])
+		fmt.Println(x)
 	}
 }
 
-func Data_set(name, explain, href, images, category string) {
+// DataSet 添加主页数据
+func DataSet(name, explain, href, images, category string) {
 
 	common.DB.AutoMigrate(&model.Data{})
 
@@ -49,7 +52,8 @@ func Data_set(name, explain, href, images, category string) {
 	common.DB.Create(&model.Data{Appname: name, Explain: explain, Addr: href, Imgs: images, Category: category})
 }
 
-func Data_get() []model.Data {
+// DataGet 获取主页数据
+func DataGet() []model.Data {
 
 	var d []model.Data
 	var info []model.Data

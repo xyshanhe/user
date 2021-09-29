@@ -7,9 +7,8 @@ import (
 	"User/model"
 	"User/sendmail"
 	"User/util"
-	"net/http"
-
 	"github.com/gin-gonic/gin"
+	"net/http"
 )
 
 // ToRegister 注册
@@ -47,7 +46,7 @@ func DoRegister(c *gin.Context) {
 		return
 	}
 
-	map_data := map[string]interface{}{
+	mapData := map[string]interface{}{
 		"code": 200,
 		"msg":  "注册成功"}
 
@@ -56,14 +55,14 @@ func DoRegister(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, map_data)
-
+	c.JSON(http.StatusOK, mapData)
 }
 
 // ToLogin 登录
 func ToLogin(c *gin.Context) {
 	c.HTML(200, "userlogin/login.html", nil)
 }
+
 
 func DoLogin(c *gin.Context) {
 	var userInfo util.UserInfo
@@ -98,6 +97,9 @@ func DoLogin(c *gin.Context) {
 
 	mapData := map[string]interface{}{"code": 200, "data": gin.H{"token": token, "username": user.User_account_name}, "msg": "登录成功"}
 
+	//发送cookise
+	//c.SetCookie("access_token", token, 60*3, "/", "127.0.0.1/user/", false, true)
+
 	//返回结果
 	c.JSON(http.StatusOK, mapData)
 }
@@ -113,13 +115,13 @@ func EmailLogin(c *gin.Context) {
 		return
 	}
 
-	map_data := map[string]interface{}{
+	MapData := map[string]interface{}{
 		"code": 200,
 		"msg":  "验证码发送成功"}
 
 	if model.MaliLogin(userInfo.Email) == true {
 		sendmail.DayMail(userInfo.Email)
-		c.JSON(http.StatusOK, map_data)
+		c.JSON(http.StatusOK, MapData)
 	} else {
 		c.JSON(http.StatusUnprocessableEntity, gin.H{"code": 421, "msg": "邮箱错误！！"})
 	}
@@ -198,6 +200,21 @@ func DoUpdate(c *gin.Context) {
 
 // Info 用户信息路由
 func Info(c *gin.Context) {
+
 	user, _ := c.Get("user")
 	c.JSON(http.StatusOK, gin.H{"code": 200, "data": gin.H{"user": dto.ToUserDto(user.(model.User))}})
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -116,20 +116,29 @@
 
     //登录发送表达
     var login_btn = document.getElementById("login_btn")
+    // var cookie = ""
+
     login_btn.onclick = function() {
         var username = document.getElementById("username").value;
         var password = document.getElementById("password").value;
+        
         $.ajax({
             url:"/user/do/login",
             type:"POST", 
+            dataType:"json",
             data:{
                 "username":username,
                 "password":password,
+            },
+            beforeSend: function(request) {
+                request.setRequestHeader("Authorization","Breaer ");
             },
             success:function(data){
                 if(data["code"]==200){      
                     layer.msg('登录成功');
                 }
+                // document.cookie= data["data"]["token"]
+                // cookie = document.cookie= data["data"]["token"]
             },
             error:function(data){
                 if(data["code"]!=200){

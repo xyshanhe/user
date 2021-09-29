@@ -3,6 +3,7 @@ package middleware
 import (
 	"User/common"
 	"User/model"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql" //导入mysql
 	"net/http"
@@ -14,6 +15,7 @@ func AuthMiddleware() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		//获取authorization header
 		tokenString := ctx.GetHeader("Authorization")
+		fmt.Println("我是tokenstring",tokenString)
 
 		//validate token formate
 		if tokenString == "" || !strings.HasPrefix(tokenString, "Bearer ") {

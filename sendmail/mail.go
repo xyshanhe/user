@@ -1,13 +1,5 @@
 package sendmail
 
-/*
------------------------------------
------------------------------------
-邮箱的配置信息。
------------------------------------
------------------------------------
-*/
-
 import (
 	"fmt"
 	"math/rand"
@@ -31,7 +23,7 @@ func DayMail(mail string) {
 	// 接收到的随机6位验证码给全局变量Code
 	Code = fmt.Sprint(num)
 
-	//发送邮件
+	//发送邮件格式
 	m := gomail.NewMessage()
 	m.SetHeader("From", "2653563535@qq.com") //发送人
 	m.SetHeader("To", mail)                  //收件人

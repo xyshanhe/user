@@ -8,12 +8,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func To_Page1(c *gin.Context) {
+func ToPage1(c *gin.Context) {
 	c.HTML(200, "page1/page1.html", nil)
 }
 
-func Do_Page1(c *gin.Context) {
-	var code util.Code_data
+func DoPage1(c *gin.Context) {
+	var code util.CodeData
 
 	err := c.ShouldBind(&code)
 	util.Check(err)
@@ -25,13 +25,14 @@ func Do_Page1(c *gin.Context) {
 	})
 }
 
-// Page 主页逻辑
-func To_Page(c *gin.Context) {
+// ToPage 主页逻辑
+func ToPage(c *gin.Context) {
 	c.HTML(200, "page/index.html", nil)
 }
 
-func Do_Page(c *gin.Context) {
-	var code util.Code_data
+// DoPage 获取数据主页数据
+func DoPage(c *gin.Context) {
+	var code util.CodeData
 
 	err := c.ShouldBind(&code)
 	util.Check(err)
@@ -43,13 +44,14 @@ func Do_Page(c *gin.Context) {
 	})
 }
 
+// content 主页数据处理
 func content() []map[string]string {
 	var (
 		slice []map[string]string
 		arr1  map[string]string
 	)
 
-	var data = reptile.Data_get()
+	var data = reptile.DataGet()
 
 	for _, i := range data {
 		arr1 = make(map[string]string)
