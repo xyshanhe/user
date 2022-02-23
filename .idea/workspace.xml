@@ -4,24 +4,13 @@
     <list default="true" id="1d5f3f2c-efdb-40da-a04e-025c44b7d5f8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/CommunityController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/CommunityController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/PageController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/PageController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/UserContorller.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/UserContorller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dto/dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/dto/dto.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.exe" beforeDir="false" afterPath="$PROJECT_DIR$/main.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware/middleware.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/middleware.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/ShareModel.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/ShareModel.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/share.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/share.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/userdb.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/userdb.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/reptile/fuun.go" beforeDir="false" afterPath="$PROJECT_DIR$/reptile/fuun.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/route.go" beforeDir="false" afterPath="$PROJECT_DIR$/route.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sendmail/mail.go" beforeDir="false" afterPath="$PROJECT_DIR$/sendmail/mail.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sss/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/sss/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/appupload/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/appupload/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/community/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/community/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/template/page/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/page/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/page1/paga1.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/page1/paga1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/userlogin/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/userlogin/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/data.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/data.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/hashuser.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/hashuser.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/功能.txt" beforeDir="false" afterPath="$PROJECT_DIR$/功能.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/share/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/share/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +40,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/route.go" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="JupyterTrust" id="78c40160-ee2f-4333-bdb5-01c43d1fd3a5" />
   <component name="ProblemsViewState">
     <option name="showPreview" value="true" />
   </component>
@@ -71,7 +61,7 @@
     <property name="configurable.GoLibrariesConfigurable.is.expanded" value="false" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/middleware" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -88,7 +78,7 @@
       <recent name="G:\User\model" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build fuun.go">
+  <component name="RunManager" selected="Go Build.go build main.go">
     <configuration name="go build fuun.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="User" />
       <working_directory value="$PROJECT_DIR$" />
@@ -128,13 +118,23 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Build.go build fuun.go" />
-        <item itemvalue="Go Build.go build main.go (1)" />
         <item itemvalue="Go Build.go build main.go" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1d5f3f2c-efdb-40da-a04e-025c44b7d5f8" name="Default Changelist" comment="" />
+      <created>1634093387066</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1634093387066</updated>
+      <workItem from="1634093388239" duration="38000" />
+      <workItem from="1634093445774" duration="71000" />
+    </task>
+    <servers />
+  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>

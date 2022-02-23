@@ -56,13 +56,9 @@ import "User/reptile"
 //	f.a()
 //}
 
-
-
 func main() {
 	reptile.DataGet()
 }
-
-
 
 //func main()  {
 //
@@ -80,9 +76,8 @@ func main() {
 //
 //	//清除cookie
 //	router.GET("/clear_cookie", func(context *gin.Context) {
-//		context.SetCookie("name", "Shimin Li", -1, "/", "localhost", false, true)
+//		context.SetCookie("name", "Shimin Li", \-1, "/", "localhost", false, true)
 //	})
 //
 //	router.Run(":8080")
 //}
-

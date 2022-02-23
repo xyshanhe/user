@@ -1,6 +1,7 @@
 {{define "community/index.html"}}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,26 +13,52 @@
 
 <style>
     /* 导航栏 */
-    #itme_nav{
+    #itme_nav {
         float: left;
         font-size: 0.4rem;
-        margin:0px 50px 0px 0px; 
+        margin: 0px 50px 0px 0px;
     }
 
-    #article_style{
-        margin:18px 0px 0px 18px;
-   }
+    #article_style {
+        margin: 18px 0px 0px 18px;
+    }
 
-   #share{position: absolute;top: 24.5%;left: 0.5%;width: 7em;height: 2.3em;background-color: rgb(46, 46, 46);color:rgb(187, 187, 187);}
-   #description{margin:0.2% 0 0 0.2%;}
-   #theme{margin:0% 0 0 0.2%;font-size: 0.45rem;color: rgb(94, 35, 35);}
-   #user{margin: 0 0 0 0.2%;font-size: 0.29rem;}
-   #time{margin: -1% 0 0 50%;font-size: 0.29rem;}
+    #share {
+        position: absolute;
+        top: 24.5%;
+        left: 0.5%;
+        width: 7em;
+        height: 2.3em;
+        background-color: rgb(46, 46, 46);
+        color: rgb(187, 187, 187);
+    }
+
+    #description {
+        margin: 0.2% 0 0 0.2%;
+    }
+
+    #theme {
+        margin: 0% 0 0 0.2%;
+        font-size: 0.45rem;
+        color: rgb(94, 35, 35);
+    }
+
+    #user {
+        margin: 0 0 0 0.2%;
+        font-size: 0.29rem;
+    }
+
+    #time {
+        margin: -1% 0 0 50%;
+        font-size: 0.29rem;
+    }
 
 
-   #article_style:hover {background-color: rgb(231, 231, 231); }
+    #article_style:hover {
+        background-color: rgb(231, 231, 231);
+    }
 
-    #post_iframe{
+    #post_iframe {
         width: 30%;
         height: 37%;
         position: absolute;
@@ -43,88 +70,94 @@
         margin: auto;
     }
 
+    .jumbotron {
+        background: #8a2be2;
+        background: -webkit-linear-gradient(to right, #f8f8ff, #ffa500, #8a2be2);
+        background: linear-gradient(to right, #f8f8ff, #ffa500, #8a2be2);
+    }
 </style>
 
 <body>
 
     <!-- 导航栏 -->
-    <div class="jumbotron" >
+    <div class="jumbotron">
         <h1 id=WelcomeName></h1>
         <nav class="navbar navbar-inverse">
             <a href="page" id="itme_nav" class="navbar-brand">首页</a>
             <a href="/to/community" id="itme_nav" class="navbar-brand">社区</a>
-            <a href="" title="http://127.0.0.1:8080/user/to/login" onclick="func(this)" value="1" id="itme_nav" class="navbar-brand">登录/注册</a>
-          </nav>
-      </div>
+            <a href="" title="http://127.0.0.1:8080/user/to/login" onclick="func(this)" value="1" id="itme_nav"
+                class="navbar-brand">登录/注册</a>
+        </nav>
+    </div>
 
-        <div id="i" class="row"></div>
-        <iframe id="post_iframe" frameborder="0" name="mainFrame2" scrolling="no"></iframe>
-    
+    <div id="i" class="row"></div>
+    <iframe id="post_iframe" frameborder="0" name="mainFrame2" scrolling="no"></iframe>
+
     <form>
-        <div title="http://127.0.0.1:8080/community/to/share"  onclick="func1(this)" id="share" class="btn btn-default" >分享</div> 
+        <div title="http://127.0.0.1:8080/community/to/share" onclick="func1(this)" id="share" class="btn btn-default">
+            分享</div>
     </form>
-    
+
 </body>
 
 <script>
 
-function func1(obj){
+    function func1(obj) {
         var myFrame = "mainFrame2";
-        window.open(obj.title,myFrame)
+        window.open(obj.title, myFrame)
     }
-
 
     //登录
-    function func(obj){
+    function func(obj) {
         var myFrame = "mainFrame" + obj.value;
-        window.open(obj.title,myFrame)
+        window.open(obj.title, myFrame)
     }
 
-     //跟随页面修改字体大小
-     function placeholderPic(){
+    //跟随页面修改字体大小
+    function placeholderPic() {
         var w = document.documentElement.offsetWidth;
-        document.documentElement.style.fontSize=w/40+'px';
+        document.documentElement.style.fontSize = w / 40 + 'px';
     }
     placeholderPic();
-    window.onresize=function(){
+    window.onresize = function () {
         placeholderPic();
     }
 
     //获取发帖内容
-    function send(){
+    function send() {
         $.get("http://127.0.0.1:8080/do/community", function (data, status) {
-          var html = ""
-          for(i in data["data"]){
-            html += `<div id="article_style" class="col-xs-12 col-md-12"><div id="theme">
+            var html = ""
+            for (i in data["data"]) {
+                html += `<div id="article_style" class="col-xs-12 col-md-12"><div id="theme">
                     <p>`
-                    +data["data"][i]["title"]+
+                    + data["data"][i]["title"] +
                     `</p></div>
                     <div id="description"><p><b>链接: </b>`
-                    +data["data"][i]["data"]+
+                    + data["data"][i]["data"] +
                     `</p></div>
                     <div id="time">
                     <p><div class="glyphicon glyphicon-time"></div>`
-                    +formatDate(data["data"][i]["createtime"])+`
+                    + formatDate(data["data"][i]["createtime"]) + `
                     </p>
                     </div>
                     <div id="user">
                     <p><div class="glyphicon glyphicon-user"></div> `
-                    +data["data"][i]["data"]+`
+                    + "管理员" + `
                     </p>
                     </div>
                     </div>`
             }
             $("#i").html(html);
 
-           //欢迎语
+            //欢迎语
             var name = ""
-            if(data["data"][i]["id"]!=""){
-                name = `<h1>Welcome,`+data["data"][i]["id"]+`</h1>`
-            }else{
+            if (data["data"][i]["id"] != "") {
+                name = `<h1>Welcome,` + data["data"][i]["id"] + `</h1>`
+            } else {
                 name = `<h1>Welcome,Hiahia</h1>`
             }
             $("#WelcomeName").html(name);
-        }); 
+        });
     }
     send()
 
@@ -132,13 +165,14 @@ function func1(obj){
     //     send()
     // },5000)
 
-      //日期计算
+    //日期计算
     function formatDate(val) {
         var date = new Date(val);
         var y = date.getFullYear();
         var m = date.getMonth() + 1;
         var d = date.getDate();
-        return y + '-' + m + '-' + d; }
+        return y + '-' + m + '-' + d;
+    }
 
 </script>
 

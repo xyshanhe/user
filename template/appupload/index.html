@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,23 +8,24 @@
     <title>分享上传</title>
     <script src="/static/js/jquery-3.6.0.min.js"></script>
 </head>
+
 <body>
     <div>
-
-     <input type="file" onchange="showImg()" id="img_file"><img src="" alt="" id="img_id" style="width: 100px">
- </div> 
+        <input type="file" onchange="showImg()" id="img_file"><img src="" alt="" id="img_id" style="width: 100px">
+    </div>
 
 </body>
 <script>
-     function showImg(){
-            // var img_file =  $("#img_file").val();
-            var file =  document.getElementById('img_file').files[0];
-            var re = new FileReader();
-            re.readAsDataURL(file);
-            re.onload = function(re){
-                $('#img_id').attr("src", re.target.result);
-            }
+    function showImg() {
+        // var img_file =  $("#img_file").val();
+        var file = document.getElementById('img_file').files[0];
+        var re = new FileReader();
+        re.readAsDataURL(file);
+        re.onload = function (re) {
+            $('#img_id').attr("src", re.target.result);
         }
+    }
 
 </script>
+
 </html>

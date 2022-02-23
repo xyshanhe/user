@@ -64,6 +64,11 @@ func DoShare(c *gin.Context) {
 		return
 	}
 
+	if len(code.Data) == 0 {
+		c.JSON(http.StatusUnprocessableEntity, gin.H{"code": 422, "msg": "请输入了有效链接"})
+		return
+	}
+
 	MapData := map[string]interface{}{
 		"code": 200,
 		"msg":  "分享成功"}

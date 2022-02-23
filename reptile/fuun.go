@@ -48,7 +48,6 @@ func DataSet(name, explain, href, images, category string) {
 	common.DB.AutoMigrate(&model.Data{})
 
 	// 增加
-
 	common.DB.Create(&model.Data{Appname: name, Explain: explain, Addr: href, Imgs: images, Category: category})
 }
 

@@ -1,6 +1,7 @@
 {{define "share/index.html"}}
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +11,6 @@
     <link rel="icon" href="data:image/ico;base64,aWNv">
 </head>
 <style>
-
     #loginDiv {
         /* width: 25%; */
         display: flex;
@@ -21,7 +21,8 @@
         box-shadow: 7px 7px 17px rgba(64, 69, 82, 0.5);
         /* border-radius: 30px; */
         color: rgb(0, 0, 0);
-        text-align: center; /*让div内部文字居中*/
+        text-align: center;
+        /*让div内部文字居中*/
         margin: auto;
         position: absolute;
         top: 0;
@@ -29,64 +30,62 @@
         right: 0;
         bottom: 0;
     }
-    
-    #logo{
-    position:absolute;
-    left:-5px;
-    top:-8px;
+
+    #logo {
+        position: absolute;
+        left: -5px;
+        top: -8px;
     }
 
-    #title{
+    #title {
         width: 500px;
         height: 22px;
-        border: 2px solid rgb(91, 99, 98); 
+        border: 2px solid rgb(91, 99, 98);
         border-radius: 4px;
     }
 
-    #content{
+    #content {
         width: 500px;
         height: 25px;
-        border: 2px solid rgb(91, 99, 98); 
+        border: 2px solid rgb(91, 99, 98);
         border-radius: 4px;
     }
 
-    #close_btn{
-        position:absolute;
-        left:92%;
-        top:4%;
+    #close_btn {
+        position: absolute;
+        left: 92%;
+        top: 4%;
     }
 
-    #login_btn{
+    #login_btn {
         border-color: rgb(158, 139, 139);
         background-color: rgba(28, 199, 211, 0.8);
         border-radius: 5px;
         width: 80px;
-        height:30px;
+        height: 30px;
         font-size: 15px;
     }
 
 
     .mark {
-    display: none;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-    height: 40px;
-    line-height:40px;
-    width: 120px;
-    text-align: center;
-    font-size: 20px;
-    color: #fff;
-    background: rgba(0, 0, 0, 0.6);
-    border-radius:50px;
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        height: 40px;
+        line-height: 40px;
+        width: 120px;
+        text-align: center;
+        font-size: 20px;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 50px;
     }
-
-
-
 </style>
+
 <body>
     </div>
     <div id="loginDiv" class="tli">
@@ -95,12 +94,12 @@
         </div>
         <form>
             <h2>发布内容</h2>
-            <p>&nbsp&nbsp&nbsp&nbsp<input type="text" id="title"placeholder="请输入标题不超25字"  maxlength="25" ></p>
+            <p>&nbsp&nbsp&nbsp&nbsp<input type="text" id="title" placeholder="请输入标题不超25字" maxlength="25"></p>
             <p>&nbsp&nbsp&nbsp&nbsp<input type="text" id="content" placeholder="输入链接"></p>
             <div style="text-align:  center;margin-top: 30px;">
-                <input type="button" class="button"value="发布" id="send_btn" >
+                <input type="button" class="button" value="发布" id="send_btn">
             </div>
-        </form>   
+        </form>
 
         <button id="close_btn">X</button>
     </div>
@@ -110,13 +109,13 @@
 
     //关闭按钮
     var close_btn = document.getElementById("close_btn")
-    close_btn.onclick = function() {
-        if(close_btn.onclick){
-            setTimeout(function(){
+    close_btn.onclick = function () {
+        if (close_btn.onclick) {
+            setTimeout(function () {
                 parent.location.reload(true);
                 var index = parent.layer.getFrameIndex(window.name);
                 parent.layer.close(index);
-                },1);
+            }, 1);
         }
     }
 
@@ -127,42 +126,43 @@
         $('body').append(div)
         $('.mark').html(str);
         $('.mark').show();
-        setTimeout(function() {
+        setTimeout(function () {
             $('.mark').hide();
             $('.mark').remove();
         }, 3000)
     }
 
     var login_btn = document.getElementById("send_btn")
-    login_btn.onclick = function() {
+    login_btn.onclick = function () {
         var title = document.getElementById("title").value;
         var content = document.getElementById("content").value;
         $.ajax({
-            url:"/community/do/share",
-            type:"POST", 
-            data:{
-                "title":title,
-                "data":content,
+            url: "/community/do/share",
+            type: "POST",
+            data: {
+                "title": title,
+                "data": content,
             },
-            success:function(data){
+            success: function (data) {
                 console.log(data)
-                if(data["code"]==200){    
+                if (data["code"] == 200) {
                     //登录成功关闭窗口
                     myalert('发送成功');
-                    setTimeout(function(){
+                    setTimeout(function () {
                         parent.location.reload(true);
                         var index = parent.layer.getFrameIndex(window.name);
                         parent.layer.close(index);
-                        },800);
-                }else{
+                    }, 800);
+                } else {
                     myalert('标题不可为空');
                 }
             },
-            fail:function(data){
+            fail: function (data) {
             }
         })
     }
 
 </script>
+
 </html>
 {{end}}

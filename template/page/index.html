@@ -1,6 +1,7 @@
 {{define "page/index.html"}}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,97 +11,130 @@
     <script src="/static/js/jquery-3.6.0.min.js"></script>
 </head>
 <style>
-    a:link {color:#000000;}       /* 未访问链接*/
-    a:visited {color:#161616;}  /* 已访问链接 */
-    a:hover {color:#535353;}   /* 鼠标移动到链接上 */
-    a:active{color:#ffffff;}   /* 鼠标点击时 */
-    a:hover{text-decoration:none;}
+    a:link {
+        color: #000000;
+    }
+
+    /* 未访问链接*/
+    a:visited {
+        color: #161616;
+    }
+
+    /* 已访问链接 */
+    a:hover {
+        color: #535353;
+    }
+
+    /* 鼠标移动到链接上 */
+    a:active {
+        color: #ffffff;
+    }
+
+    /* 鼠标点击时 */
+    a:hover {
+        text-decoration: none;
+    }
 
     /* d导航栏 */
-    #itme_nav{
+    #itme_nav {
         float: left;
         font-size: 0.4rem;
-        margin:0px 50px 0px 0px; 
+        margin: 0px 50px 0px 0px;
     }
 
     /* app图片 */
-    img{ margin:18px 18px 18px 18px; width: 70px; height: 70px; border-radius:20px;}
-    
+    img {
+        margin: 18px 18px 18px 18px;
+        width: 70px;
+        height: 70px;
+        border-radius: 20px;
+    }
+
     /* app名称 */
-    #name{
-        margin:0px 0px 0px 18px; 
+    #name {
+        margin: 0px 0px 0px 18px;
         font-weight: 700;
         font-size: 0.38rem;
-        cursor: pointer;/*鼠标变成手指样式*/
+        cursor: pointer;
+        /*鼠标变成手指样式*/
     }
 
     /* 分类标签 */
-    #category{
+    #category {
         background-color: rgb(255, 197, 36);
-        border-radius:5px;
-        text-align:center ;   
+        border-radius: 5px;
+        text-align: center;
         float: left;
         font-size: 0.31rem;
-        margin:13px 13px 13px 13px; 
-   }
+        margin: 13px 13px 13px 13px;
+    }
 
-   /* app整体 */
-   #item{
+    /* app整体 */
+    #item {
         border-radius: 10px;
         list-style-type: none;
-   }
+    }
 
-   /* app动效 */
-   #item:hover {
-        background-color: rgb(231, 231, 231); 
+    /* app动效 */
+    #item:hover {
+        background-color: rgb(231, 231, 231);
         box-shadow: 0px 1rem 2rem 0px rgba(255, 255, 255, 0.15);
-        transform: translate(0,-8px); 
+        transform: translate(0, -8px);
         transition-delay: 0s !important;
     }
 
 
-   /* app介绍 */
-   #explain{
-        margin:5px 0px 0px 18px;
+    /* app介绍 */
+    #explain {
+        margin: 5px 0px 0px 18px;
         font-weight: 400px;
-        width: 64% ;
+        width: 64%;
         height: 45px;
         font-size: 0.31rem;
-        overflow: hidden;  
-        display: -webkit-box;  
+        overflow: hidden;
+        display: -webkit-box;
         -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical; 
-        }
-
-    /* app标题 */
-    #count{
-        position:absolute; 
-        top:24%;
+        -webkit-box-orient: vertical;
     }
 
-    .item_111{
-        color:#000000; 
-        font-size:0.35rem; 
-        font-weight: 600; 
-        float: left;
-        margin:0px 30px 0px 0px; 
-        cursor: pointer;
-   }
+    /* app标题 */
+    #count {
+        position: absolute;
+        top: 24%;
+    }
 
-   .item_111:hover{color:#666565;}
-   
+    .item_111 {
+        color: #000000;
+        font-size: 0.35rem;
+        font-weight: 600;
+        float: left;
+        margin: 0px 30px 0px 0px;
+        cursor: pointer;
+    }
+
+    .item_111:hover {
+        color: #666565;
+    }
+
+    .jumbotron {
+        background: #8a2be2;
+        background: -webkit-linear-gradient(to right, #f8f8ff, #ffa500, #8a2be2);
+        background: linear-gradient(to right, #f8f8ff, #ffa500, #8a2be2);
+    }
 </style>
+
 <body>
 
     <!-- 导航栏 -->
-      <div class="jumbotron">
+    <div class="jumbotron">
         <h1 id="WelcomeName"></h1>
         <nav class="navbar navbar-inverse">
             <a href="page" id="itme_nav" class="navbar-brand">首页</a>
             <a href="/to/community" id="itme_nav" class="navbar-brand">社区</a>
-            <a href="" title="http://127.0.0.1:8080/user/to/login" onclick="func(this)" value="1" id="itme_nav" class="navbar-brand">登录/注册</a>
-        </nav>   
-      </div>
+            <a href="" title="http://127.0.0.1:8080/user/to/login" onclick="func(this)" value="1" id="itme_nav"
+                class="navbar-brand">登录/注册</a>
+        </nav>
+    </div>
 
     <!-- app -->
     <div class="row" onsubmit="return dosubmit()"></div>
@@ -108,172 +142,173 @@
     <!-- app分类计数 -->
     <div id="count" class="navbar-brand"></div>
 
-     
-      
+
+
 </body>
 
 <script>
     //跟随页面修改字体大小
-     function placeholderPic(){
+    function placeholderPic() {
         var w = document.documentElement.offsetWidth;
-        document.documentElement.style.fontSize=w/40+'px';
+        document.documentElement.style.fontSize = w / 40 + 'px';
     }
     placeholderPic();
-    window.onresize=function(){
+    window.onresize = function () {
         placeholderPic();
     }
 
     // 获取app数据
     send()
 
-    function send(){
-    $.get("http://127.0.0.1:8080/do/page", function (data, status) {
+    function send() {
+        $.get("http://127.0.0.1:8080/do/page", function (data, status) {
 
-        // main
-        page()
-        countPart()
-        welcomeName()
-        
+            // main
+            page()
+            countPart()
+            welcomeName()
 
-         //点击获取全部内容
-        $("#whole").click(function() {page()})
 
-        //点击获取游戏分类
-        $("#game").click(function() {htmlPage("游戏")})
+            //点击获取全部内容
+            $("#whole").click(function () { page() })
 
-        //点击获取创意分类
-        $("#originality").click(function() {htmlPage("创意")})
+            //点击获取游戏分类
+            $("#game").click(function () { htmlPage("游戏") })
 
-        //点击获取世界分类
-        $("#word").click(function() {htmlPage("世界")})
+            //点击获取创意分类
+            $("#originality").click(function () { htmlPage("创意") })
 
-        //点击获取沙雕分类
-        $("#sb").click(function() {htmlPage("沙雕")})
+            //点击获取世界分类
+            $("#word").click(function () { htmlPage("世界") })
 
-        //点击获取人工智能分类
-        $("#robot").click(function() {htmlPage("人工智能")})
+            //点击获取沙雕分类
+            $("#sb").click(function () { htmlPage("沙雕") })
 
-        //欢迎语 +用户名称
-        function welcomeName(){
-            var name = ""
-            if(data["data"][i]["Id"]!=""){
-                name = `<h1>Welcome,`+data["data"][i]["Id"]+`</h1>`
-            }else{
-                name = `<h1>Welcome,Hiahia</h1>`
+            //点击获取人工智能分类
+            $("#robot").click(function () { htmlPage("人工智能") })
+
+            //欢迎语 +用户名称
+            function welcomeName() {
+                var name = ""
+                if (data["data"][i]["Id"] != "") {
+                    name = `<h1>Welcome,` + data["data"][i]["Id"] + `</h1>`
+                } else {
+                    name = `<h1>Welcome,Hiahia</h1>`
+                }
+
+                $("#WelcomeName").html(name);
             }
 
-            $("#WelcomeName").html(name);
-        }
 
-
-        //导航栏+计数
-        function countPart(){
+            //导航栏+计数
+            function countPart() {
                 var game = 0
                 var originality = 0
                 var word = 0
                 var sb = 0
                 var robot = 0
-                for(i in data["data"]){
-                    if(data["data"][i]["Category"]==" 游戏"){game +=1}
-                    if(data["data"][i]["Category"]==" 创意"){originality +=1}
-                    if(data["data"][i]["Category"]==" 世界"){word +=1}
-                    if(data["data"][i]["Category"]==" 沙雕"){sb +=1}
-                    if(data["data"][i]["Category"]==" 人工智能"){robot +=1}
+                for (i in data["data"]) {
+                    if (data["data"][i]["Category"] == " 游戏") { game += 1 }
+                    if (data["data"][i]["Category"] == " 创意") { originality += 1 }
+                    if (data["data"][i]["Category"] == " 世界") { word += 1 }
+                    if (data["data"][i]["Category"] == " 沙雕") { sb += 1 }
+                    if (data["data"][i]["Category"] == " 人工智能") { robot += 1 }
                 }
-                
-                
+
+
                 //统计类别数量
-                count = `<p id="whole" class="item_111">全部(`+(game+word+originality+sb+robot)+`)</p>
-                        <p id="game" class="item_111" >游戏(`+game+`)</p>
-                        <p id="originality" class="item_111">创意(`+originality+`)</p>
-                        <p id="word" class="item_111">世界(`+word+`)</p>
-                        <p id="sb" class="item_111" >沙雕(`+sb+`)</p>
-                        <p id="robot" class="item_111">人工智能(`+robot+`)</p>`
+                count = `<p id="whole" class="item_111">全部(` + (game + word + originality + sb + robot) + `)</p>
+                        <p id="game" class="item_111" >游戏(`+ game + `)</p>
+                        <p id="originality" class="item_111">创意(`+ originality + `)</p>
+                        <p id="word" class="item_111">世界(`+ word + `)</p>
+                        <p id="sb" class="item_111" >沙雕(`+ sb + `)</p>
+                        <p id="robot" class="item_111">人工智能(`+ robot + `)</p>`
 
                 //上传到导航栏
                 $("#count").html(count);
             }
-        
-        //进入主页获取内容
-        function page() {
-            var html = ""
-            for(i in data["data"]){
-                html += `<div id="item" class="col-xs-6 col-md-4" >
-                    <img id="imgs" src="`
-                    +data["data"][i]["logo"]+
-                    `" alt="WX20210316-120917@2x_gaitubao_119x119 _1_.png">
-                    <div id="name">
-                    <a id="addr" href="`
-                    +data["data"][i]["Addr"]+
-                    `">`
-                    +data["data"][i]["appname"]+`<div class="glyphicon glyphicon-share-alt"></div>
-                    </a></div>
-                    <div id="explain"><p id="Explain" >`
-                    +data["data"][i]["Exp"]+
-                    `</p></div><b><div id="category" class="cg">`
-                    +data["data"][i]["Category"]+
-                    `</div></b></div>`
-            }
-            $(".row").html(html);
-            modify_color()
-        }
 
-        //点击分类获取数据                                                                     
-        function htmlPage(index){
-            var html = ""
-            for(i in data["data"]){
-                if(data["data"][i]["Category"]==" "+index){
-                    html += `<div id="item"  class="col-xs-6 col-md-4" >
+            //进入主页获取内容
+            function page() {
+                var html = ""
+                for (i in data["data"]) {
+                    html += `<div id="item" class="col-xs-6 col-md-4" >
                     <img id="imgs" src="`
-                    +data["data"][i]["logo"]+ 
-                    `" alt="WX20210316-120917@2x_gaitubao_119x119 _1_.png">
+                        + data["data"][i]["logo"] +
+                        `" alt="WX20210316-120917@2x_gaitubao_119x119 _1_.png">
                     <div id="name">
                     <a id="addr" href="`
-                    +data["data"][i]["Addr"]+
-                    `">`
-                    +data["data"][i]["appname"]+`<div class="glyphicon glyphicon-share-alt"></div>
+                        + data["data"][i]["Addr"] +
+                        `">`
+                        + data["data"][i]["appname"] + `<div class="glyphicon glyphicon-share-alt"></div>
                     </a></div>
                     <div id="explain"><p id="Explain" >`
-                    +data["data"][i]["Exp"]+
-                    `</p></div><b><div id="category" class="cg">`
-                    +data["data"][i]["Category"]+
-                    `</div></b></div>`
+                        + data["data"][i]["Exp"] +
+                        `</p></div><b><div id="category" class="cg">`
+                        + data["data"][i]["Category"] +
+                        `</div></b></div>`
+                }
+                $(".row").html(html);
+                modify_color()
+            }
+
+            //点击分类获取数据                                                                     
+            function htmlPage(index) {
+                var html = ""
+                for (i in data["data"]) {
+                    if (data["data"][i]["Category"] == " " + index) {
+                        html += `<div id="item"  class="col-xs-6 col-md-4" >
+                    <img id="imgs" src="`
+                            + data["data"][i]["logo"] +
+                            `" alt="WX20210316-120917@2x_gaitubao_119x119 _1_.png">
+                    <div id="name">
+                    <a id="addr" href="`
+                            + data["data"][i]["Addr"] +
+                            `">`
+                            + data["data"][i]["appname"] + `<div class="glyphicon glyphicon-share-alt"></div>
+                    </a></div>
+                    <div id="explain"><p id="Explain" >`
+                            + data["data"][i]["Exp"] +
+                            `</p></div><b><div id="category" class="cg">`
+                            + data["data"][i]["Category"] +
+                            `</div></b></div>`
                     }
                 }
-            $(".row").html(html);
-            modify_color()
+                $(".row").html(html);
+                modify_color()
             }
         });
     }
 
     //修改分类颜色
-    function modify_color(){
+    function modify_color() {
 
-        var aDiv=document.getElementsByClassName("cg");
-        var arr=new Array();
+        var aDiv = document.getElementsByClassName("cg");
+        var arr = new Array();
 
-        for(var j=0;j<aDiv.length;j++){
+        for (var j = 0; j < aDiv.length; j++) {
             // console.log("进入循环",aDiv[j].innerHTML)
-            arr[j]=aDiv[j].innerHTML;
-            if(arr[j]==" 游戏"){aDiv[j].style.background="rgb(16, 227, 235)";}
-    
-            if(arr[j]==" 创意"){aDiv[j].style.background="rgb(255, 197, 36)";}
+            arr[j] = aDiv[j].innerHTML;
+            if (arr[j] == " 游戏") { aDiv[j].style.background = "rgb(16, 227, 235)"; }
 
-            if(arr[j]==" 世界"){aDiv[j].style.background="rgb(33, 93, 221)";}
+            if (arr[j] == " 创意") { aDiv[j].style.background = "rgb(255, 197, 36)"; }
 
-            if(arr[j]==" 沙雕"){aDiv[j].style.background="rgb(22, 255, 168)";}
+            if (arr[j] == " 世界") { aDiv[j].style.background = "rgb(33, 93, 221)"; }
 
-            if(arr[j]==" 人工智能"){aDiv[j].style.background="rgb(241, 93, 8)";}
+            if (arr[j] == " 沙雕") { aDiv[j].style.background = "rgb(22, 255, 168)"; }
+
+            if (arr[j] == " 人工智能") { aDiv[j].style.background = "rgb(241, 93, 8)"; }
         }
     }
 
-        // 获取iframe弹窗
-        function func(obj){
+    // 获取iframe弹窗
+    function func(obj) {
         var myFrame = "mainFrame" + obj.value;
-        window.open(obj.title,myFrame)
+        window.open(obj.title, myFrame)
     }
 
-    
+
 </script>
+
 </html>
 {{end}}
